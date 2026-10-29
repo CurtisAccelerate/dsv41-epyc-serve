@@ -1,0 +1,29 @@
+{
+  "env_file": "config/all.env",
+  "tensor_parallel_size": 4,
+  "pipeline_parallel_size": 1,
+  "max_model_len": 262144,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 2048,
+  "gpu_memory_utilization": 0.97,
+  "kv_cache_dtype": "fp8_ds_mla",
+  "enable_prefix_caching": true,
+  "async_scheduling": true,
+  "compilation_config": {
+    "cudagraph_mode": "FULL_AND_PIECEWISE",
+    "cudagraph_capture_sizes": [1, 2, 3, 4, 6, 8, 12, 18, 24, 30, 36, 48]
+  },
+  "speculative_config": {
+    "method": "dspark",
+    "num_speculative_tokens": 5
+  },
+  "engram_config": {
+    "cpu_offload": true
+  },
+  "tokenizer_mode": "deepseek_v41",
+  "tool_call_parser": "deepseek_v41",
+  "reasoning_parser": "deepseek_v41",
+  "worker_extension_cls": "w9_exl_ab.worker_extension.WorkerExtension",
+  "load_format": "safetensors",
+  "safetensors_load_strategy": "lazy"
+}

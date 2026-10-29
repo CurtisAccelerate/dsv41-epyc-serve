@@ -1,38 +1,44 @@
 # dsv41-epyc-serve
 
-Source package for a 4-GPU EPYC host. The image launches with peer access
-on across all four cards and with the optimized path on: rebuilt gates,
-attention bank, attention split, sampler bank, and the 4-rank collective.
-The October 28 benches used that same path with peer access off. That
-comparison is `config/measured.env`.
+Source package for a 4-GPU EPYC host. The image launches from `config/all.env`:
+peer access on across all four cards, and the optimized path on. That file
+is also the env file to pass to the server. `config/launch.json` is the
+server argument list. The October 28 benches used that same path with peer
+access off: `config/measured.env`.
 
-This tree is meant to be the root of a repo. Clone it, build the image, run
-the report. Weights, Engram tables, and a private runtime image are not
-included.
+Weights, Engram tables, and a private runtime image are not included. The
+container does not change a power cap and does not load a model. A server
+started with `--env-file config/all.env` inherits the flags.
 
-The container environment is that launch. It does not change a power cap,
-and it does not load a model. A server process started from the image
-inherits the flags below.
+## Launch
+
+`config/all.env` is the launch file. It turns the optimized path on and turns peer access on for all four cards (`NCCL_P2P_DISABLE=0`, `NCCL_P2P_LEVEL=SYS`). That is rebuilt gates, the attention bank and split, the sampler bank, coop, and tensor-core MoE. `config/launch.json` is the server argument list: tensor parallel 4, 8 sequences, 2048 batched tokens, 262144 context, `fp8_ds_mla`, draft depth 5, and the CUDA graph sizes.
+
+```
+docker run --rm --gpus all --env-file config/all.env dsv41-epyc-serve:source
+```
+
+Pass that same env file to the server process. A variable already set in the environment wins over the file.
+
+`config/measured.env` is the same optimized path with peer access off, which is the measured host all-reduce.
 
 ## Configure P2P
 
-The optimized flags stay on in every file. `DSV41_P2P` is the peer switch:
+One variable, `DSV41_P2P`. Three files:
 
 | file | value | what it does |
 |---|---|---|
-| `config/all.env` | `all` | **Default launch.** Peer every link across the four cards, and the optimized path is on. |
+| `config/all.env` | `all` | **Launch file.** Optimized path on, and peer every NVIDIA topo link the driver allows: `PIX`, `PXB`, `PHB`, `NODE`, `SYS`, and NVLink. `NCCL_P2P_DISABLE=0` and `NCCL_P2P_LEVEL=SYS`. |
 | `config/root-complex.env` | `root-complex` | Peer only inside one PCI host bridge (`PIX`, `PXB`, `PHB`). `NODE` and `SYS` stay off. Prints `NCCL_P2P_LEVEL=PHB`. |
-| `config/measured.env` | `none` | Same optimized path. Peer access off. Host all-reduce. |
+| `config/measured.env` | `none` | Same optimized path. No GPU peers. Host all-reduce. `NCCL_P2P_DISABLE=1`. |
 
 On one EPYC socket with each GPU on its own root port, topo between those GPUs is `NODE`. `all` is the mode that crosses those ports. `root-complex` enables nothing in that layout. `none` is how the published benches were measured.
 
 Precedence, highest first:
 
-1. `docker run --env-file` replaces the keys in that file
-2. `docker run -e` replaces one variable
-3. Otherwise the image environment is `config/all.env`
-
-Docker itself gives `-e` priority over `--env-file` when both are passed.
+1. `docker run -e` replaces one variable
+2. `docker run --env-file config/all.env` is the launch file
+3. Otherwise the image environment is the same flags as `config/all.env`
 
 ## Build and run
 

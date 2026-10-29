@@ -134,8 +134,18 @@ def main() -> int:
         assert measured["p2p"] == "none"
         assert measured["nccl"]["NCCL_P2P_DISABLE"] == "1"
         launch = (ROOT / "config" / "all.env").read_text(encoding="utf-8")
-        for key in ("DSV41_P2P=all", "DSV41_R2=1", "W26_ATTENTION_BANK=1", "W26_ATTENTION_SPLIT=1", "W26_SAMPLER_BANK=1", "W14_COLLECTIVE_PROFILES=1", "W15_PAIR_TRANSPORT=1", "NCCL_P2P_LEVEL=SYS"):
-            assert key in launch, key
+        for needle in (
+            "DSV41_P2P=all",
+            "NCCL_P2P_DISABLE=0",
+            "NCCL_P2P_LEVEL=SYS",
+            "DSV41_R2=1",
+            "W26_ATTENTION_BANK=1",
+            "W26_ATTENTION_SPLIT=1",
+            "W26_SAMPLER_BANK=1",
+            "VLLM_EXL3_COOP=1",
+            "VLLM_EXL3_TC_MOE_V2=1",
+        ):
+            assert needle in launch, needle
         print("report selftest ok")
         return 0
 
@@ -170,8 +180,8 @@ def main() -> int:
     }
 
     section("identity")
-    print("launch default: 4-GPU EPYC, p2p all, optimized path on")
-    print("measured comparison keeps that path and turns peer access off")
+    print("launch file config/all.env: optimized path on, peer access on for all four cards")
+    print("measured stack is p2p none: host all-reduce, no GPU peers")
     print("weights, Engram tables, and the private runtime image are not in this image")
     print("this process prints the NCCL exports; it does not change a power cap")
 
@@ -210,6 +220,7 @@ def main() -> int:
         print(f"GPU{edge['gpu_a']} -- GPU{edge['gpu_b']} {edge['link']}: {state}")
 
     section("launch")
+    print("config/all.env")
     for line in (ROOT / "config" / "all.env").read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if line and not line.startswith("#"):
