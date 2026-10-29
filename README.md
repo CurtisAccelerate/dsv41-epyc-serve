@@ -1,5 +1,21 @@
 # Complete optimized DeepSeek V4.1 Flash serving image
 
+## EPYC: four-way GPU P2P
+
+Use the new [EPYC P2P4 build](p2p4/README.md) for full four-rank GPU-memory TP all-reduce. It retains the optimized serving path and disables HOSTSHM and paired transport. From this checkout:
+
+```bash
+python3 install_p2p4.py
+```
+
+Then run the four-GPU qualification and `bash p2p4/run.sh` as documented in the [EPYC guide](p2p4/README.md). The installed image is `dsv41-optimized:20261029-epyc-p2p4`. This installs the verified complete base image and builds a small, pinned transport layer locally. The [EPYC release kit](https://github.com/CurtisAccelerate/dsv41-epyc-serve/releases/tag/epyc-p2p4-20261029) contains the same installer and source.
+
+The image has been built and passed source/GPU-import checks, transport-plan checks, and two-rank eager/captured-graph operator checks. **Full four-GPU serving, quality and performance remain pending on EPYC.** Missing peer links are rejected. No speedup is promised before a matched benchmark. See the [build receipt](optimized/p2p4-build-receipt.json).
+
+## Original hybrid base and control
+
+The following instructions install the previous image with HOSTSHM and paired collectives still selected in its graph bank. It remains the complete pinned base for the new transport and an A/B control. For the requested EPYC four-way path, use `install_p2p4.py` and `p2p4/run.sh` above.
+
 The complete sanitized image is distributed through the [optimized-20261029-p2p release](https://github.com/CurtisAccelerate/dsv41-epyc-serve/releases/tag/optimized-20261029-p2p), with its source kit and installed-file manifests. The approximately 9.3 GB Docker archive is split into five release assets. The installer downloads each part, checks each SHA256 and the combined archive, loads it, verifies the exact image ID, and checks installed sources and imports.
 
 ## Install
@@ -46,4 +62,4 @@ Checks passed: installed-file identities, CPU/GPU imports, K2/K3 source compilat
 
 The release's source kit contains 6,462 source/configuration files, CUDA headers and rebuild tools. Exact compiled serving libraries are included in the image. Upstream compiled dependencies are shipped and version-inventoried; a clean upstream vLLM C++ build recipe is outside this snapshot.
 
-After installation, `docker build -t dsv41-epyc-serve:optimized .` adds this repository's source label to the complete image. `Dockerfile.report` and `README-report.md` preserve the historical report-only package. Existing `src/`, report and configuration files are historical references; use the release snapshot for the serving runtime.
+After installing P2P4 with `install_p2p4.py`, `docker build -t dsv41-epyc-serve:optimized .` adds this repository's source label to that complete image. `Dockerfile.report` and `README-report.md` preserve the historical report-only package. Existing `src/`, report and configuration files are historical references; use the release snapshot for the serving runtime.

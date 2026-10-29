@@ -1,0 +1,35 @@
+{
+  "image_tag": "dsv41-optimized:20261029-epyc-p2p4",
+  "built_image_id": "sha256:456da2ddf576a1b00a8b3e517d383fc6bb684ce4520ba91d8c03b4b8a9f590d6",
+  "base_image_id": "sha256:e3bc13c775dee4013f5cfe28688482e0ec8ccb9b045ccb012c9f6e53b56c2726",
+  "installed_manifest_sha256": "59d2c888070b4e71a31bf00a214b44038995ab1c377c65fa79aab67d48613ca2",
+  "rebuild_identity": "Docker image IDs can change with build timestamps; installer checks the exact base ID and final installed source manifest",
+  "transport": "Full four-rank PyNCCL GPU-memory TP all-reduce; no HOSTSHM or pair route",
+  "half_accumulation": "FP16/BF16 inputs promoted on GPU to FP32, reduced, then cast back on GPU",
+  "passed": {
+    "complete_image_build": true,
+    "end_to_end_installer_with_cached_pinned_base": true,
+    "installed_file_hashes": 4466,
+    "cpu_dependency_imports": true,
+    "gpu_dependency_imports": true,
+    "tp4_communicator_selection_with_host_disabled": true,
+    "r2_all_batch_transport_plans_and_override_rejection": true,
+    "bash_launcher_syntax": true,
+    "two_rank_operator_cases_per_rank": 36,
+    "independent_cpu_fp64_reference": true,
+    "changed_input_poisoned_output_graph_replays": true,
+    "actual_captured_nccl_kernel_evidence": true,
+    "two_rank_direct_p2p_without_shm_or_net_payload": true,
+    "four_gpu_missing_cross_pair_peer_links_rejected": true
+  },
+  "two_rank_evidence": "../p2p4/pair-test-result.json",
+  "not_yet_qualified": [
+    "Four-way operator and graph tests on an all-pairs peer-accessible EPYC host",
+    "Full model startup, optimized-bank qualification and generated API response on the new image",
+    "Model quality, speculative acceptance and matched C1/C4/C8 performance"
+  ],
+  "full_four_way_serving_qualified": false,
+  "measured_speedup": null,
+  "existing_live_service_modified_or_restarted": false,
+  "distribution": "GitHub Release kit builds a small transport layer over the complete verified base image; not a GHCR upload"
+}
