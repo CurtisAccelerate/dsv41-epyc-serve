@@ -1,0 +1,54 @@
+{
+  "source": "October 28, 2026 serving measurements on 4x CMP 170HX, 140 W, draft depth 5, temperature 0, thinking off. Decode is (completion_tokens - 1) / (end - first_token), median of 3 runs, 400 output tokens. These numbers describe that host. They are the comparison card, not a claim about the machine running this image.",
+  "serving_choice": {
+    "1_user": "previous mixed-attention kernel, 6 rows",
+    "2_to_6_users": "rebuilt gate/up/down kernel, rows 8 12 18 24 30 36",
+    "7_users": "padded onto the 48-row graph, tensor-core experts",
+    "8_users": "48-row tensor-core experts"
+  },
+  "morrow_serving_tok_s": [
+    {"users": 1, "path": "previous attention", "count": 205.7, "code": 150.5, "prose": 112.1},
+    {"users": 2, "path": "rebuilt gates", "count": 153.9, "code": 100.4, "prose": 77.5},
+    {"users": 3, "path": "rebuilt gates", "count": 138.7, "code": 97.8, "prose": 62.8},
+    {"users": 4, "path": "rebuilt gates", "count": 120.2, "code": 84.3, "prose": 54.2},
+    {"users": 5, "path": "rebuilt gates", "count": 108.2, "code": 76.8, "prose": 48.9},
+    {"users": 6, "path": "rebuilt gates", "count": 98.5, "code": 70.6, "prose": 44.8},
+    {"users": 7, "path": "tensor core", "count": 74.0, "code": 54.5, "prose": 34.5},
+    {"users": 8, "path": "tensor core", "count": 81.6, "code": 60.4, "prose": 36.6}
+  ],
+  "morrow_gate_trial_tok_s": [
+    {"users": 1, "count_prior": 205.7, "count_new": 206.0, "code_prior": 150.5, "code_new": 149.3, "prose_prior": 112.1, "prose_new": 107.4, "serving": "prior; fused trial was not faster"},
+    {"users": 2, "count_prior": 140.8, "count_new": 153.9, "code_prior": 94.7, "code_new": 100.4, "prose_prior": 74.4, "prose_new": 77.5, "serving": "new"},
+    {"users": 3, "count_prior": 124.0, "count_new": 138.7, "code_prior": 85.5, "code_new": 97.8, "prose_prior": 59.4, "prose_new": 62.8, "serving": "new"},
+    {"users": 4, "count_prior": 108.4, "count_new": 120.2, "code_prior": 75.8, "code_new": 84.3, "prose_prior": 49.2, "prose_new": 54.2, "serving": "new"},
+    {"users": 5, "count_prior": 95.9, "count_new": 108.2, "code_prior": 70.7, "code_new": 76.8, "prose_prior": 42.7, "prose_new": 48.9, "serving": "new"},
+    {"users": 6, "count_prior": 86.8, "count_new": 98.5, "code_prior": 63.4, "code_new": 70.6, "prose_prior": 38.9, "prose_new": 44.8, "serving": "new"},
+    {"users": 7, "count_prior": 73.5, "count_new": 74.0, "code_prior": 54.1, "code_new": 54.5, "prose_prior": 34.7, "prose_new": 34.5, "serving": "tensor core, not this kernel"},
+    {"users": 8, "count_prior": 81.7, "count_new": 81.6, "code_prior": 59.2, "code_new": 60.4, "prose_prior": 36.8, "prose_new": 36.6, "serving": "tensor core, not this kernel"}
+  ],
+  "spark_suite_tok_s": {
+    "note": "Same prompt text and timing rules as the October 26 suite, run on the 4x CMP host. Not a DGX Spark. Aggregate is the average of eight category rates and includes time to first token. Per stream is decode only. The 1-user row of this suite was the fused trial, which is not the serving path. Users 2-8 match what is serving. There is no 7-user row.",
+    "october_28": [
+      {"users": 1, "aggregate": 96.2, "per_stream": 120.8, "serving_path": false},
+      {"users": 2, "aggregate": 154.4, "per_stream": 96.9, "serving_path": true},
+      {"users": 3, "aggregate": 197.0, "per_stream": 81.3, "serving_path": true},
+      {"users": 4, "aggregate": 209.3, "per_stream": 66.1, "serving_path": true},
+      {"users": 5, "aggregate": 231.2, "per_stream": 59.7, "serving_path": true},
+      {"users": 6, "aggregate": 243.8, "per_stream": 53.6, "serving_path": true},
+      {"users": 8, "aggregate": 275.7, "per_stream": 45.3, "serving_path": true}
+    ],
+    "october_26_aggregate": [
+      {"users": 1, "aggregate": 99.0, "per_stream": 124.3},
+      {"users": 2, "aggregate": 122.6, "per_stream": 78.6},
+      {"users": 3, "aggregate": 157.5, "per_stream": 67.9},
+      {"users": 4, "aggregate": 185.4, "per_stream": 59.9},
+      {"users": 5, "aggregate": 207.2, "per_stream": 53.3},
+      {"users": 6, "aggregate": 220.5, "per_stream": 48.1},
+      {"users": 8, "aggregate": 270.0, "per_stream": 45.0}
+    ]
+  },
+  "prefill": {
+    "note": "Not the October 28 kernel change. Cold prefill, median of three passes.",
+    "prompt_tokens_93335_tok_s": 1376
+  }
+}

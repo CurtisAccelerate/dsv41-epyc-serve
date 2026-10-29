@@ -1,0 +1,28 @@
+{
+  "name": "october-28-measured",
+  "p2p": "none",
+  "nccl": {
+    "NCCL_P2P_DISABLE": "1"
+  },
+  "collective": "host all-reduce",
+  "tensor_parallel_size": 4,
+  "max_num_seqs": 8,
+  "max_num_batched_tokens": 2048,
+  "max_model_len": 262144,
+  "kv_cache_dtype": "fp8_ds_mla",
+  "draft_depth": 5,
+  "temperature": 0,
+  "thinking": false,
+  "cudagraph_mode": "FULL_AND_PIECEWISE",
+  "capture_sizes": [1, 2, 3, 4, 6, 8, 12, 18, 24, 30, 36, 48],
+  "rows_per_user": 6,
+  "pad_7_users_onto_48": true,
+  "kernel_by_users": {
+    "1": "previous mixed-attention kernel, 6 rows",
+    "2_to_6": "rebuilt gate/up/down, rows 8 12 18 24 30 36",
+    "7": "padded onto the 48-row graph, tensor-core experts",
+    "8": "48-row tensor-core experts"
+  },
+  "comparison_host": "4x CMP 170HX, 140 W power cap. The matched benches describe that host.",
+  "note": "These settings produced the matched Morrow and Spark numbers. This package defaults to p2p all so a new host can measure whether peer access across every card is faster. Select config/measured.env to report this stack instead."
+}

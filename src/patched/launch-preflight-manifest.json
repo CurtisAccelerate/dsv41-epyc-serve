@@ -1,0 +1,306 @@
+{
+  "files": [
+    {
+      "module": "hybrid.attention_admission",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_admission.py",
+      "sha256": "3182cce7f7b1472a56f0bb54a1257352be44785184e18d42d9a2c0e076b8ed00"
+    },
+    {
+      "module": "hybrid.attention_contract",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_contract.py",
+      "sha256": "5698f8289561efe3e0e12e1b38095d7ce102c04482ba06642e0f4e0292087ff5"
+    },
+    {
+      "module": "hybrid.attention_owner",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_owner.py",
+      "sha256": "ef55c22ad3d544f5ca7a3b1b6a7f2ddadb6e1b6f1240f4a07d44503b798dedc8"
+    },
+    {
+      "module": "hybrid.attention_qualification",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_qualification.py",
+      "sha256": "77de858f0f3756efe33fc23721be8fd89b04be6d8ccf5307a99331e5edbb5fbe"
+    },
+    {
+      "module": "hybrid.attention_startup",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_startup.py",
+      "sha256": "0ffb9a5b7eec2486abd79c547655e36aeffebdc19b1ebc7ccd1012adb1bf9e00"
+    },
+    {
+      "module": "hybrid.attention_worker",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_worker.py",
+      "sha256": "690b277a11a8d7beee9700520346708126b753ffb1a035ab3b9e1286243e1ea5"
+    },
+    {
+      "module": "hybrid.bank_protocol",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/bank_protocol.py",
+      "sha256": "68d94c602285c84b655e8c637abebb7493fb715c8b1633f74f4b94aeeb4a6983"
+    },
+    {
+      "module": "hybrid.boot_native_contract",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/boot_native_contract.py",
+      "sha256": "d9cd4b41f9b1f6134285d962b9ac8e129976ae60df21a26904dc34d93ac75113"
+    },
+    {
+      "module": "hybrid.cumulative_contract",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/cumulative_contract.py",
+      "sha256": "97eca239689964efc6c7f9ba947c4e89a3eb588e793ea03b94efb053f60e1627"
+    },
+    {
+      "module": "hybrid.cumulative_native",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/cumulative_native.py",
+      "sha256": "69a9783d2859d26f0b1d9d4d9a3c285a962d632a5637cbee067fff0422480c40"
+    },
+    {
+      "module": "hybrid.cumulative_startup",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/cumulative_startup.py",
+      "sha256": "8aef5d8d28dc81f2f9ef3c2202e73502485ca247f98a8a59e1168b77c6c261b7"
+    },
+    {
+      "module": "hybrid.cumulative_worker",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/cumulative_worker.py",
+      "sha256": "0936daf97f96fe6cfed6f328e6d649335ab8051209979d6c13cb47ea56515f3f"
+    },
+    {
+      "module": "hybrid.dspark_proposer",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/dspark_proposer.py",
+      "sha256": "d85f86490ade3388ca44aff3fd1c565f61f457c9a509aeafe57b00b74b002de5"
+    },
+    {
+      "module": "hybrid.generic_metadata",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/generic_metadata.py",
+      "sha256": "f40a95760dedc717b063e97d2622015f4068f9ff350225cb7d0d4238bd4e9021"
+    },
+    {
+      "module": "hybrid.initial_decode_contract",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/initial_decode_contract.py",
+      "sha256": "0d70ef2ca50fa276e48ca656ec4762d6562395d09f9aa63ffa9457edbd9bc167"
+    },
+    {
+      "module": "hybrid.initial_state_plan",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/initial_state_plan.py",
+      "sha256": "74665884579ac8e7a821be7573a3005a605b48ff0e6c045ee1150d832435e3ef"
+    },
+    {
+      "module": "hybrid.metadata_census",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/metadata_census.py",
+      "sha256": "3161dc941d6bb5b3eebb5bba88c123cab153a8b8861e97572ef4911535a0f3b5"
+    },
+    {
+      "module": "hybrid.private_nodes",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/private_nodes.py",
+      "sha256": "fd9bbd538affeb324561a4944a9407fceb67a95bdfd49c4ba90f48cfb12d5d51"
+    },
+    {
+      "module": "hybrid.state_journal",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/state_journal.py",
+      "sha256": "bdd2679a38b74130b22cc0209f7545967db46fb279db53beb1a8c6b0ab540f23"
+    },
+    {
+      "module": "hybrid.w26_attention_split",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/w26_attention_split.py",
+      "sha256": "f9e623665eb6692ca5ea674192f129181c618d0f8b36939c689605d6ee0832ff"
+    },
+    {
+      "module": "hybrid.w26_dual_graph",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/w26_dual_graph.py",
+      "sha256": "6d338a6baa62d822f5d85627720bbc7812451af0038ef5246e32450157c44f48"
+    },
+    {
+      "module": "hybrid.w26_mhc_overlap",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/w26_mhc_overlap.py",
+      "sha256": "1ab24ac14ca833582fb7b419e8b1ce201ac22a5a73fe9d2ab0e3959c033cecc7"
+    },
+    {
+      "module": "hybrid.w26_sampler_bank",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/w26_sampler_bank.py",
+      "sha256": "378413b1903da0ffea0e8c4a315e06b88171f9a8add395d28b629053aa98d8b3"
+    },
+    {
+      "module": "vllm.compilation.breakable_cudagraph",
+      "target": "/usr/local/lib/python3.12/dist-packages/vllm/compilation/breakable_cudagraph.py",
+      "sha256": "09faa5e2d2e6d9ab2e6e91e59bb41540efc8392eb14b9d31290dd81d79cc356f"
+    },
+    {
+      "module": "vllm.models.deepseek_v4_1.amd.rocm",
+      "target": "/usr/local/lib/python3.12/dist-packages/vllm/models/deepseek_v4_1/amd/rocm.py",
+      "sha256": "9e9bed5f05d3ca3efd6efd71dc9985a34004abbae51af16dfff50bd5ff7f9a10"
+    },
+    {
+      "module": "vllm.v1.worker.gpu_model_runner",
+      "target": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py",
+      "sha256": "7e1228444dd3da44d62df32aa24fa57ef0aca99b00f48b3c5c2df3f9dbef1eb7"
+    },
+    {
+      "module": "w9_exl_ab.collective_args",
+      "target": "/w9/integration/w9_exl_ab/collective_args.py",
+      "sha256": "077fb230484696748e12182ececfafa16fd59af4278c8a47382351fa2516eed7"
+    },
+    {
+      "module": "w9_exl_ab.collective_profiles",
+      "target": "/w9/integration/w9_exl_ab/collective_profiles.py",
+      "sha256": "0114863986dc6249c8317f01697197e68b316b8ccbd54806eb21c7187161dde1"
+    },
+    {
+      "module": "w9_exl_ab.node_versions",
+      "target": "/w9/integration/w9_exl_ab/node_versions.py",
+      "sha256": "c3538144a3656ffa551677047b4d5aa46aa5dd9a94cfa4ab13dc540ca6c4f9a9"
+    },
+    {
+      "module": "w9_exl_ab.pair_transport",
+      "target": "/w9/integration/w9_exl_ab/pair_transport.py",
+      "sha256": "b0bc112da608c27b66dafbf1083d246cc816c1f4e153b1f1ed7f0705b67a12b4"
+    },
+    {
+      "module": "w9_exl_ab.params",
+      "target": "/w9/integration/w9_exl_ab/params.py",
+      "sha256": "aa733d2dd34850a0a9c047043ce979250f1a1b3985b551b98dd6247b414a2a83"
+    },
+    {
+      "module": "w9_exl_ab.runtime",
+      "target": "/w9/integration/w9_exl_ab/runtime.py",
+      "sha256": "e77a0c3d0e71bf672ef1cf677cc3b7c0eb6bd5080201bb76cbb8cc39e9131149"
+    },
+    {
+      "module": "w9_exl_ab.versions",
+      "target": "/w9/integration/w9_exl_ab/versions.py",
+      "sha256": "c546724309909f2704bc15b8a3ec95d4f93698dce59705dd6e4ec0800bb8605b"
+    },
+    {
+      "module": "w9_exl_ab.worker_extension",
+      "target": "/w9/integration/w9_exl_ab/worker_extension.py",
+      "sha256": "9b57110234c2caad7aa3664ec5b2d76e2fc9da567367e6fa0ccceae3ca24b633"
+    },
+    {
+      "module": "w9_resident_api.admission",
+      "target": "/w9/resident-api/w9_resident_api/admission.py",
+      "sha256": "569e7daaec34957b87e6c8fd17e62ab0fc6bec848b6d2ea9c795dd0a5e9544e1"
+    },
+    {
+      "module": "w9_resident_api.control",
+      "target": "/w9/resident-api/w9_resident_api/control.py",
+      "sha256": "c36bb38630686c3bd25fcdf97b77b2e4256bf4ee45373e0e7a6b289596a2dea5"
+    },
+    {
+      "module": "w9_resident_api.launch",
+      "target": "/w9/resident-api/w9_resident_api/launch.py",
+      "sha256": "db82289cd87da01c35212cff39265417b6e6b7cf5a92080062bd8d80d33fef1b"
+    },
+    {
+      "module": "hybrid.attention_profiles",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_profiles.py",
+      "sha256": "5cd94a7187ec377540c829371615a21a580950ff3301bd6caa8ec42f81626f3d"
+    },
+    {
+      "module": "hybrid.attention_second_capture",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_second_capture.py",
+      "sha256": "0e7f388ea12ded7b2d0d5d30b94b45218023f3846802c36db24e11d975b1ce43"
+    },
+    {
+      "module": "hybrid.native_mixed_private",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/native_mixed_private.py",
+      "sha256": "d8072c20c6c809e3cb9bdbc6788276a2c65df59e8717cd5bac5351052abed848"
+    },
+    {
+      "module": "hybrid.attention_mixed_capture",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention_mixed_capture.py",
+      "sha256": "ee1e3e668019c85e0bbb732df7c1143a9541f3bc5b49d3ff81834df1b87b3559"
+    },
+    {
+      "module": "hybrid.production_control",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/production_control.py",
+      "sha256": "5b3a35fe0a5fa93c91e07bc3fdd77c53cfd88431a9b6d8caaf55c7799d3e794e"
+    },
+    {
+      "module": "hybrid.r2_attention",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/r2_attention.py",
+      "sha256": "350b3fbb3375e01ce3886ab08476c023fff6a5324a723c9fe39e1fa0b4f473eb"
+    },
+    {
+      "module": "hybrid.r2_bank",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/r2_bank.py",
+      "sha256": "a81ca933249dcdecc81534fa0f6c7f12d9c6c0a45489eb74de423366101c3a5d"
+    },
+    {
+      "module": "hybrid.r2_contract",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/r2_contract.py",
+      "sha256": "6eaaaf99ee265f5cd382e40edf283bb7ef716bc95f5d6535aaa2b45b346a5ec3"
+    },
+    {
+      "module": "hybrid.r2_experts",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/r2_experts.py",
+      "sha256": "ee6d0ca26a38d114d87ce4dc62435f42abc2ea735490a98ec81841e8b6b4317e"
+    },
+    {
+      "module": "hybrid.r2_sampler",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/r2_sampler.py",
+      "sha256": "b504f167f6a24e1fa9ffda1c722a8a245fe1c8f32afb7003c36efb643aa3f18c"
+    },
+    {
+      "module": "hybrid.r2_startup",
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/r2_startup.py",
+      "sha256": "74e96202b62474d60a9ef21264eee497d8174d267f5c14599c85d2e48b9b2a0b"
+    }
+  ],
+  "data_files": [
+    {
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/attention-imports.json",
+      "sha256": "04982928886bcecd26b69fd5eb2ac0d1719edfd705d0fa7c494aaeb9d6127311"
+    },
+    {
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/dsv41_r1.py",
+      "sha256": "e112b065f76d80e61e40b93d6a7128c4ead23954ec47c04b397eb943ca79d5f0"
+    },
+    {
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/dsv41_r1_round.py",
+      "sha256": "44941bfeab07a9928e9b80a5f6041f24a4c0943b0e19d1a4d698febe1adf36f4"
+    },
+    {
+      "target": "/usr/local/lib/python3.12/dist-packages/hybrid/dsv41_r1_trace.py",
+      "sha256": "38cb2ea1417bacb0119148622bdb69a018491584f7a94e58b424adfe891ae46d"
+    },
+    {
+      "target": "/w9/integration/r2/r2_native.sm80.cubin",
+      "sha256": "38d748fcb906b3d8981cb07a5fe83a3a8c5a347c0608367309e94c7db8e6eed0"
+    },
+    {
+      "target": "/w9/integration/w9_exl_ab/capture_memory.py",
+      "sha256": "217a9ff3e02033f7bd6d62e754ea817bcb062f5b0891baf1aeba49627c7bdb39"
+    },
+    {
+      "target": "/w9/versions/boot.json",
+      "sha256": "214e8fdb84da4bbd8c4eb621f6fba033dc5db59f5527945eea9c582d2f8102f0"
+    },
+    {
+      "target": "/w9/versions/qualification.json",
+      "sha256": "d09b0cf29bc8bc49d67a3d99a695b7928755be81008418a9c09a97a4357ec9a5"
+    },
+    {
+      "target": "/w9/versions/transpose.cubin",
+      "sha256": "a4c2ed3e83ee8c9025962379fe1782b66c38b340f05cfa986b6d29c5ded63187"
+    },
+    {
+      "target": "/w9/versions/w25-native-mixed-qualification.json",
+      "sha256": "e67826fdece6d2d48897bba07aafa25960b92561054050cbbfc54e93fe13098d"
+    },
+    {
+      "target": "/w9/versions/w25-native-mixed.cubin",
+      "sha256": "edc623dbeea0931aa37507ed8b2b78f12df054a3756d64507479fcab6c8529e3"
+    },
+    {
+      "target": "/w9/versions/w25-native-mixed.json",
+      "sha256": "38910deb255139ced1775aa768027a68692d92a42d98203c751c972f60d58efd"
+    }
+  ],
+  "required_environment": {
+    "PYTHONPATH": "/w9/resident-api:/w9/integration:/w9/engram-loader",
+    "VLLM_USE_V2_MODEL_RUNNER": "0",
+    "VLLM_EXL3_TC_MOE_SO": "/opt/dsv41-tc-moe/_dsv41_tc_moe_C.abi3.so",
+    "W14_COLLECTIVE_PROFILES": "1",
+    "W15_PAIR_TRANSPORT": "1",
+    "W26_ATTENTION_BANK": "1",
+    "W26_ATTENTION_SPLIT": "1",
+    "W26_DSPARK_CAPTURE_LOCAL": "0",
+    "W26_MHC_DUAL_GRAPH": "0",
+    "W26_SAMPLER_BANK": "1"
+  }
+}
