@@ -1,0 +1,27 @@
+{
+  "cudagraph_mode": "FULL_AND_PIECEWISE",
+  "capture_sizes": [1, 2, 3, 4, 6, 8, 12, 18, 24, 30, 36, 48],
+  "rows_per_user": 6,
+  "pad_7_users_onto_48": true,
+  "plan": [
+    {"rows": 6, "users": 1, "expert_kernel": "previous mixed-attention cubin", "captured": true},
+    {"rows": 8, "users": 2, "expert_kernel": "rebuilt gate/up/down", "captured": true},
+    {"rows": 12, "users": 3, "expert_kernel": "rebuilt gate/up/down", "captured": true},
+    {"rows": 18, "users": 4, "expert_kernel": "rebuilt gate/up/down", "captured": true},
+    {"rows": 24, "users": 5, "expert_kernel": "rebuilt gate/up/down", "captured": true},
+    {"rows": 30, "users": 6, "expert_kernel": "rebuilt gate/up/down", "captured": true},
+    {"rows": 36, "users": 6, "expert_kernel": "rebuilt gate/up/down, compiled; 6 users are 36 rows when the draft does not pad", "captured": true},
+    {"rows": 42, "users": null, "expert_kernel": "compiled, not a captured graph", "captured": false},
+    {"rows": 48, "users": "7 padded, and 8", "expert_kernel": "tensor-core experts", "captured": true}
+  ],
+  "shapes": {
+    "hidden": 5120,
+    "experts": 384,
+    "top_k": 6,
+    "intermediate_by_rank": [640, 640, 512, 512],
+    "k3_layers": "0-17 and 23-39",
+    "k2_layers": "18-22",
+    "codebook": "mul1",
+    "activation": "gated SiLU, limit 10"
+  }
+}

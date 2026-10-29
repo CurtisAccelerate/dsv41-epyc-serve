@@ -1,0 +1,123 @@
+{
+  "files_scanned": 169076,
+  "bytes_scanned": 21451299356,
+  "findings": [],
+  "reviewed_public_matches": [
+    {
+      "path": "/usr/lib/python3/dist-packages/cryptography/hazmat/primitives/serialization/ssh.py",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.8000.0",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libmbedcrypto.so.2.28.8",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libssh-gcrypt.so.4.9.6",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libssh.so.4.9.6",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/boto3/examples/cloudfront.rst",
+      "categories": [
+        "aws_access_key"
+      ],
+      "reason": "Public AWS SDK example data, reviewed sample identifiers and placeholder key string"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/botocore/data/iam/2010-05-08/examples-1.json",
+      "categories": [
+        "aws_access_key",
+        "private_key"
+      ],
+      "reason": "Public AWS SDK example data, reviewed sample identifiers and placeholder key string"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/botocore/data/sts/2011-06-15/examples-1.json",
+      "categories": [
+        "aws_access_key"
+      ],
+      "reason": "Public AWS SDK example data, reviewed sample identifiers and placeholder key string"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/cryptography/hazmat/primitives/serialization/ssh.py",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/google/auth/transport/_mtls_helper.py",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/google/auth/crypt/_python_rsa.py",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/google/oauth2/gdch_credentials.py",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/msal/application.py",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Public third-party key-parser delimiter or documentation placeholder; no key payload"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/numba/cuda/simulator/cudadrv/devices.py",
+      "categories": [
+        "gpu_identifier"
+      ],
+      "reason": "Public Numba simulator/test identifier; unrelated to host GPU identifiers"
+    },
+    {
+      "path": "/usr/local/lib/python3.12/dist-packages/numba/cuda/tests/cudadrv/test_cuda_driver.py",
+      "categories": [
+        "gpu_identifier"
+      ],
+      "reason": "Public Numba simulator/test identifier; unrelated to host GPU identifiers"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1",
+      "categories": [
+        "private_key"
+      ],
+      "reason": "Embedded distribution crypto fixture; unmodified libgnutls verified against installed dpkg checksum",
+      "distribution_checksum_verified": true
+    }
+  ],
+  "passed": true,
+  "upstream_test_token_removed": true
+}

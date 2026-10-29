@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import re
 import sys
+import json
 from pathlib import Path
 
 PATTERNS = (
@@ -34,6 +35,17 @@ def scan(root: Path) -> list[str]:
         except UnicodeError:
             hits.append(f"{path}: not utf-8 text")
             continue
+        if path.name == "packages.json":
+            # Distribution versions such as 10.2.0.50 are not host addresses.
+            try:
+                versions = json.loads(text)
+            except ValueError:
+                versions = None
+            if (isinstance(versions, dict) and versions
+                and all(isinstance(k, str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", k)
+                        and isinstance(v, str) and re.fullmatch(r"[0-9][A-Za-z0-9_.!+\-]*", v)
+                        for k, v in versions.items())):
+                text = json.dumps(list(versions))
         for pat in PATTERNS:
             if pat.search(text):
                 hits.append(f"{path}: matched {pat.pattern}")
