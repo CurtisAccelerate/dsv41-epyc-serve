@@ -30,7 +30,7 @@ def register(owner):
  """Capture unused microscopic graphs once, solely to retain function handles."""
  from . import pair_transport as PT
  if PT.INTERNAL:return
- if os.environ.get('W14_COLLECTIVE_PROFILES')!='1' or owner.world_size!=4:return
+ if os.environ.get('W14_COLLECTIVE_PROFILES','1')!='1' or owner.world_size!=4:return
  import torch
  if torch.cuda.is_current_stream_capturing():raise RuntimeError('Host AR registry must precede graph capture')
  x=torch.zeros(6*5120,device=owner.device,dtype=torch.bfloat16);y=torch.empty_like(x);torch.cuda.synchronize()
@@ -54,7 +54,7 @@ def selected(inp,blocks,threads,algo):
  if r2 is not None:
   chosen=r2.collective_hook(inp,blocks,threads,algo)
   if chosen is not None:return chosen
- if os.environ.get('W14_COLLECTIVE_PROFILES')=='1' and PROFILE!='stock' and str(inp.dtype)=='torch.bfloat16':
+ if os.environ.get('W14_COLLECTIVE_PROFILES','1')=='1' and PROFILE!='stock' and str(inp.dtype)=='torch.bfloat16':
   size=inp.numel()*inp.element_size()
   if size==61440 or PROFILE=='six48' and size==491520:return 1,512,1
  return blocks,threads,algo

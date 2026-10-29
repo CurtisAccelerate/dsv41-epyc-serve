@@ -10,6 +10,18 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . /opt/dsv41-serve
+ENV DSV41_P2P=all \
+    NCCL_P2P_DISABLE=0 \
+    NCCL_P2P_LEVEL=SYS \
+    DSV41_R2=1 \
+    DSV41_R2_PAD7=1 \
+    W26_ATTENTION_BANK=1 \
+    W26_ATTENTION_SPLIT=1 \
+    W26_SAMPLER_BANK=1 \
+    W14_COLLECTIVE_PROFILES=1 \
+    W15_PAIR_TRANSPORT=1 \
+    W26_DSPARK_CAPTURE_LOCAL=0 \
+    W26_MHC_DUAL_GRAPH=0
 RUN chmod 0755 /opt/dsv41-serve/entrypoint.sh /opt/dsv41-serve/src/kernels/gu-fp32/build.sh \
     && python3 /opt/dsv41-serve/share-check.py /opt/dsv41-serve \
     && python3 /opt/dsv41-serve/p2p/policy.py \

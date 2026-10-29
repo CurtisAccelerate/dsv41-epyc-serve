@@ -5,7 +5,7 @@ the boot-time coop/stock slot cutoff and the qualification gate. No torch, no CU
 no environment writes. Every flag is parsed once at boot; malformed values raise, so
 a bad launch plan fails before serving instead of silently degrading.
 
-DSV41_R2 unset or "0" means R2 is off: no plan, no ledger, no hook changes behaviour.
+DSV41_R2 defaults on. "0" turns the rebuilt gate path off.
 """
 import hashlib
 import json
@@ -232,9 +232,10 @@ class Contract:
     def from_env(cls, env):
         """None when R2 is off. Raises ValueError on any malformed or inconsistent flag."""
         cutoff = CoopCutoff.from_env(env)
-        if env.get("DSV41_R2", "0") in ("", "0"):
+        r2 = env.get("DSV41_R2", "1")
+        if r2 in ("", "0"):
             return None
-        if env.get("DSV41_R2") != "1":
+        if r2 != "1":
             raise ValueError("DSV41_R2 must be 0 or 1")
         batches = _batches(env.get("DSV41_R2_BATCHES", "2-8"))
         if not batches or not batches <= set(BATCHES):

@@ -1,35 +1,36 @@
 # dsv41-epyc-serve
 
-Source package for an EPYC GPU-peer experiment. The default turns peer access
-on for every card, which is the widest and fastest theoretical setting. The
-October 28 measured stack is still here, as a separate config, so a run can
-be compared with the published Morrow and Spark numbers.
+Source package for a 4-GPU EPYC host. The image launches with peer access
+on across all four cards and with the optimized path on: rebuilt gates,
+attention bank, attention split, sampler bank, and the 4-rank collective.
+The October 28 benches used that same path with peer access off. That
+comparison is `config/measured.env`.
 
 This tree is meant to be the root of a repo. Clone it, build the image, run
 the report. Weights, Engram tables, and a private runtime image are not
 included.
 
-The report prints the NCCL exports for the mode you selected. It does not
-change a power cap, and it does not load a model. Put those exports on the
-process that actually serves.
+The container environment is that launch. It does not change a power cap,
+and it does not load a model. A server process started from the image
+inherits the flags below.
 
 ## Configure P2P
 
-One variable, `DSV41_P2P`. Three files:
+The optimized flags stay on in every file. `DSV41_P2P` is the peer switch:
 
 | file | value | what it does |
 |---|---|---|
-| `config/all.env` | `all` | **Default.** Peer every NVIDIA topo link the driver allows: `PIX`, `PXB`, `PHB`, `NODE`, `SYS`, and NVLink. Prints `NCCL_P2P_DISABLE=0` and `NCCL_P2P_LEVEL=SYS`. |
+| `config/all.env` | `all` | **Default launch.** Peer every link across the four cards, and the optimized path is on. |
 | `config/root-complex.env` | `root-complex` | Peer only inside one PCI host bridge (`PIX`, `PXB`, `PHB`). `NODE` and `SYS` stay off. Prints `NCCL_P2P_LEVEL=PHB`. |
-| `config/measured.env` | `none` | The measured stack. No GPU peers. Host all-reduce. Prints `NCCL_P2P_DISABLE=1`. |
+| `config/measured.env` | `none` | Same optimized path. Peer access off. Host all-reduce. |
 
 On one EPYC socket with each GPU on its own root port, topo between those GPUs is `NODE`. `all` is the mode that crosses those ports. `root-complex` enables nothing in that layout. `none` is how the published benches were measured.
 
 Precedence, highest first:
 
-1. `DSV41_P2P` already in the environment (`docker run -e` or `--env-file`)
-2. `DSV41_P2P_FILE`, a mounted env file, only when `DSV41_P2P` is unset
-3. `config/all.env`, loaded by the image when nothing else is set
+1. `docker run --env-file` replaces the keys in that file
+2. `docker run -e` replaces one variable
+3. Otherwise the image environment is `config/all.env`
 
 Docker itself gives `-e` priority over `--env-file` when both are passed.
 

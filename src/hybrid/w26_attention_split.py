@@ -137,7 +137,7 @@ class AttentionState:
 
 def try_decode(layer,fallback,**kwargs):
     """Preserve original behavior unless explicitly in the private bank capture."""
-    if os.environ.get('W26_ATTENTION_SPLIT','0')!='1':return fallback(**kwargs)
+    if os.environ.get('W26_ATTENTION_SPLIT','1')!='1':return fallback(**kwargs)
     from hybrid.w26_dual_graph import active_candidate_context
     rt=active_candidate_context()
     if rt is None or getattr(rt,'attention_state',None) is None:return fallback(**kwargs)

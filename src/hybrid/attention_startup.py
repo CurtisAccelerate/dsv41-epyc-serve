@@ -43,14 +43,14 @@ def source_attestation():
 
 async def initialize_owner(control):
     """Inside initialize, after baseline warmup and before HTTP admission."""
-    if os.environ.get('W26_ATTENTION_BANK','0')!='1':return
+    if os.environ.get('W26_ATTENTION_BANK','1')!='1':return
     if getattr(control,'_w26_initial_attempted',False):raise UnsafePreparation('Repeated initial preparation')
     control._w26_initial_attempted=True
     if control.admission is None or control.admission.open or not await control.engine.is_paused():
         raise UnsafePreparation('Initial owner is not closed and paused')
     def disabled(reason):
         control.save('attention-initial.json',dict(ready=False,reason=reason,baseline_retained=True,production_enabled=False))
-    if os.environ.get('W26_ATTENTION_SPLIT','0')!='1':disabled('split_flag_not_enabled');return
+    if os.environ.get('W26_ATTENTION_SPLIT','1')!='1':disabled('split_flag_not_enabled');return
     try:source_attestation()
     except (ValueError,OSError,ImportError,AttributeError) as exc:disabled(repr(exc));return
     await control.arm('transpose')
@@ -73,7 +73,7 @@ async def initialize_owner(control):
 
 def _prepare_attention_worker(worker,owner_id):
     """Internal initial RPC only; marker and established drafter state required."""
-    if os.environ.get('W26_ATTENTION_BANK','0')!='1':
+    if os.environ.get('W26_ATTENTION_BANK','1')!='1':
         return dict(rank=int(worker.rank),ok=True,ready=False,baseline_retained=True,reason='default_off')
     import torch
     import torch.distributed as dist
@@ -119,7 +119,7 @@ def _prepare_attention_worker(worker,owner_id):
             and type(runner.model) is BreakableCUDAGraphWrapper
             and runner.compilation_config.mode.name=='NONE' and tp.world_size==4
             and original.S.ready and original.S.startup_capture_context is not None
-            and os.environ.get('W26_ATTENTION_SPLIT','0')=='1')
+            and os.environ.get('W26_ATTENTION_SPLIT','1')=='1')
         worker._w26_initial_attempted=True;agree(eligible,'Initial-only baseline eligibility')
         manifest=local_phase('Pinned import/source attestation',source_attestation)
         agree(len({json.dumps(x,sort_keys=True) for x in consensus(manifest)})==1,'Source manifests equal')
@@ -244,7 +244,7 @@ def prepare_worker(worker,owner_id):
     import torch
     with torch.inference_mode():
         original_receipt = _prepare_attention_worker(worker,owner_id)
-        if os.environ.get("W26_ATTENTION_BANK","0") != "1":
+        if os.environ.get("W26_ATTENTION_BANK","1") != "1":
             return original_receipt
         from .cumulative_startup import extend_worker
         return extend_worker(worker,owner_id,original_receipt)

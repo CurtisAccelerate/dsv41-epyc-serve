@@ -87,7 +87,7 @@ def measured_serve(worker,method,token):
  c=a.controller;identity=a.current_identity()
  if not isinstance(token,str) or not token:raise ValueError('Invalid measured token')
  if method=='prepare':
-  if os.environ.get('DSV41_R2','0') in ('','0'):raise ValueError('Measured serve requires DSV41_R2')
+  if os.environ.get('DSV41_R2','1') in ('','0'):raise ValueError('Measured serve requires DSV41_R2')
   if c.production_active or c.production_pending is not None or c.pending is not None or c.session_token is not None or c.selected!='baseline' or a.session_armed or a._production_binding is not None:raise ValueError('Measured prepare requires idle unarmed baseline')
   if not c.availability()[MIXED]:raise ValueError('Mixed arm is not ready')
   digest=identity.arm_digest(MIXED)

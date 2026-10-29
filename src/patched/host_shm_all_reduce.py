@@ -849,7 +849,7 @@ class HostShmAllreduce:
                 f" -- here: {self._local_error}" if self._local_error else "",
             )
             self.close()
-            if os.environ.get('W15_PAIR_TRANSPORT') == '1':
+            if os.environ.get('W15_PAIR_TRANSPORT', '1') == '1':
                 raise RuntimeError('W19 pair-enabled host setup failed on the agreed rank set; startup aborted')
             return
 

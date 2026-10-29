@@ -1,20 +1,23 @@
 #!/bin/sh
-# Precedence, highest first:
-#   1. DSV41_P2P already set (docker -e or --env-file)
-#   2. DSV41_P2P_FILE, a mounted env file, when DSV41_P2P is unset
-#   3. config/all.env, the package default (peer access across every card)
+# The image already exports config/all.env. Fill any hole from that file,
+# then let DSV41_P2P_FILE replace values. An explicit DSV41_P2P stays put
+# unless the file sets it again.
 set -eu
 cd /opt/dsv41-serve
-if [ -z "${DSV41_P2P:-}" ] && [ -n "${DSV41_P2P_FILE:-}" ] && [ -f "$DSV41_P2P_FILE" ]; then
+while IFS= read -r line || [ -n "$line" ]; do
+  case "$line" in
+    ''|\#*) continue ;;
+  esac
+  key=${line%%=*}
+  eval "isset=\${$key+x}"
+  if [ -z "$isset" ]; then
+    export "$line"
+  fi
+done < /opt/dsv41-serve/config/all.env
+if [ -n "${DSV41_P2P_FILE:-}" ] && [ -f "$DSV41_P2P_FILE" ]; then
   set -a
   # shellcheck disable=SC1090
   . "$DSV41_P2P_FILE"
-  set +a
-fi
-if [ -z "${DSV41_P2P:-}" ]; then
-  set -a
-  # shellcheck disable=SC1091
-  . /opt/dsv41-serve/config/all.env
   set +a
 fi
 cmd=${1:-report}

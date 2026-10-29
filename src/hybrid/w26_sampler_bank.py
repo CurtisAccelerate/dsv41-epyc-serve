@@ -19,7 +19,7 @@ class UnsafeSamplerPreparation(RuntimeError):pass
 
 
 def enabled():
-    return os.environ.get('W26_SAMPLER_BANK', '0') == '1'
+    return os.environ.get('W26_SAMPLER_BANK', '1') == '1'
 
 
 def eligibility_report(p):

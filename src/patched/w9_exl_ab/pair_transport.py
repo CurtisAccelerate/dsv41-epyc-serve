@@ -11,7 +11,7 @@ from .pair_policy import CAP,approved_large,pair_route,shape_allowed,validate_st
 from .pair_arena import DedicatedArena,NBYTES,BLOCKS,THREADS,TILE
 INTERNAL=False;STATES={};NEXT_CHECK=0.;FAULT_RETAINED=[]
 CUBIN_SHA='04ddd502f8cd651eb16d336804f0b1a2fc2a93061683f6dccb2ff009b63d1d65'
-def enabled():return os.environ.get('W15_PAIR_TRANSPORT')=='1'
+def enabled():return os.environ.get('W15_PAIR_TRANSPORT','1')=='1'
 class PairState:
  def __init__(self,owner):
   self.owner=owner;self.ready=False;self.large=None;self.large_sizes=();self.calls={};self.memory=[]

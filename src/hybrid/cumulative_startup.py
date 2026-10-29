@@ -49,7 +49,7 @@ def extend_worker(worker,owner_id,attention_receipt):
     worker._w26_cumulative_attempted=True
     state,sampler_receipt=sampler.prepare(p,tp.cpu_group,getattr(tp.device_communicator,'pynccl_comm',None))
     r2=None;r2_receipt=None
-    if os.environ.get('DSV41_R2','0') not in ('','0'):
+    if os.environ.get('DSV41_R2','1') not in ('','0'):
         from . import r2_startup
         _,(r2_start,r2_end)=sampler.eligibility(p)
         r2,r2_receipt=r2_startup.prepare(worker,p,old,consensus,r2_start,r2_end,p.model.logits_processor.org_vocab_size)
