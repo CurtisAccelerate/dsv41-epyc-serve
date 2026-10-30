@@ -1,0 +1,1385 @@
+{
+  "passed": true,
+  "world_size": 2,
+  "full_four_way_qualified": false,
+  "diagnostic_fallback": false,
+  "peer_matrix": [
+    [
+      true,
+      true
+    ],
+    [
+      true,
+      true
+    ]
+  ],
+  "independent_cpu_fp64_reference": true,
+  "changed_input_and_poisoned_output_checks": true,
+  "captured_nccl_kernel_evidence": true,
+  "ranks": [
+    {
+      "passed": true,
+      "rank": 0,
+      "world_size": 2,
+      "transport": {
+        "transport": "p2p4",
+        "backend": "pynccl-device-memory",
+        "world_size": 2,
+        "payload_host_bytes": 0,
+        "host_collective_enabled": false,
+        "pair_collective_enabled": false,
+        "payload_dtype_policy": "fp32",
+        "fp32_accumulation_for_half": true,
+        "captured_graphs": 8,
+        "enqueue_calls": 152
+      },
+      "vllm_segmented_capture_passed": true,
+      "lifecycle_graph_captures": 96,
+      "distinct_raw_handles": 24,
+      "checks": [
+        {
+          "rows": 1,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.018982224366499444,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02587930267329828,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.026794844041457416,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.025329977852402798,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02526894176119219,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02435340039303305,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.026367591402983153,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.025391013943613407,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02862592677777569,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.028992143325039348,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.015625,
+              "max_allowed_absolute_error": 0.029236287689881783,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.03125,
+              "max_allowed_absolute_error": 0.048584728603644885,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0625,
+              "max_allowed_absolute_error": 0.0700694327097793,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.015625,
+              "max_allowed_absolute_error": 0.028503854595354473,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.03125,
+              "max_allowed_absolute_error": 0.05114824443449047,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0625,
+              "max_allowed_absolute_error": 0.07714961929020997,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.002694011884662186,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0033850333109872646,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.003011147321864517,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0029219678831324328,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.003185691036174371,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0029720418995328006,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0034289076872618725,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.003431769059627608,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0034765972266907943,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0037856254421902084,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.001953125,
+              "max_allowed_absolute_error": 0.0031961827348487336,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.00390625,
+              "max_allowed_absolute_error": 0.006741423095994788,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0078125,
+              "max_allowed_absolute_error": 0.008565071083756762,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.001953125,
+              "max_allowed_absolute_error": 0.003301099721592362,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.00390625,
+              "max_allowed_absolute_error": 0.006686103230257238,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0078125,
+              "max_allowed_absolute_error": 0.009831705250988927,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.3495397253913644e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.630148700408813e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.8464596646750403e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.876675354205687e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.0683294893115465e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.0951647005210484e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.8670600051151673e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.184168283667216e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 4.76837158203125e-07,
+            "max_allowed_absolute_error": 4.786807040735026e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.5754673179615805e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 2.384185791015625e-07,
+              "max_allowed_absolute_error": 4.924051788932646e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 4.76837158203125e-07,
+              "max_allowed_absolute_error": 7.728517522533479e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 9.5367431640625e-07,
+              "max_allowed_absolute_error": 1.251371106272797e-06,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 2.384185791015625e-07,
+              "max_allowed_absolute_error": 4.6004255593684225e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 4.76837158203125e-07,
+              "max_allowed_absolute_error": 8.617542962164676e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 9.5367431640625e-07,
+              "max_allowed_absolute_error": 1.2298733218822036e-06,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        }
+      ],
+      "actual_peer_log": {
+        "passed": true,
+        "direct_p2p": true,
+        "shm_or_net_data_fallback": false
+      },
+      "scope": "Two-rank protocol check only"
+    },
+    {
+      "passed": true,
+      "rank": 1,
+      "world_size": 2,
+      "transport": {
+        "transport": "p2p4",
+        "backend": "pynccl-device-memory",
+        "world_size": 2,
+        "payload_host_bytes": 0,
+        "host_collective_enabled": false,
+        "pair_collective_enabled": false,
+        "payload_dtype_policy": "fp32",
+        "fp32_accumulation_for_half": true,
+        "captured_graphs": 8,
+        "enqueue_calls": 152
+      },
+      "vllm_segmented_capture_passed": true,
+      "lifecycle_graph_captures": 96,
+      "distinct_raw_handles": 33,
+      "checks": [
+        {
+          "rows": 1,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.018982224366499444,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02587930267329828,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.026794844041457416,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.025329977852402798,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02526894176119219,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02435340039303305,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.026367591402983153,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.025391013943613407,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.02862592677777569,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.bfloat16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.015625,
+            "max_allowed_absolute_error": 0.028992143325039348,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.015625,
+              "max_allowed_absolute_error": 0.029236287689881783,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.03125,
+              "max_allowed_absolute_error": 0.048584728603644885,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0625,
+              "max_allowed_absolute_error": 0.0700694327097793,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.015625,
+              "max_allowed_absolute_error": 0.028503854595354473,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.03125,
+              "max_allowed_absolute_error": 0.05114824443449047,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0625,
+              "max_allowed_absolute_error": 0.07714961929020997,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.002694011884662186,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0033850333109872646,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.003011147321864517,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0029219678831324328,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.003185691036174371,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0029720418995328006,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0034289076872618725,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.003431769059627608,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0034765972266907943,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float16",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 0.001953125,
+            "max_allowed_absolute_error": 0.0037856254421902084,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.001953125,
+              "max_allowed_absolute_error": 0.0031961827348487336,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.00390625,
+              "max_allowed_absolute_error": 0.006741423095994788,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0078125,
+              "max_allowed_absolute_error": 0.008565071083756762,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.001953125,
+              "max_allowed_absolute_error": 0.003301099721592362,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.00390625,
+              "max_allowed_absolute_error": 0.006686103230257238,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 0.0078125,
+              "max_allowed_absolute_error": 0.009831705250988927,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.3495397253913644e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.630148700408813e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.8464596646750403e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.876675354205687e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.0683294893115465e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.0951647005210484e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 3.8670600051151673e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.184168283667216e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 4.76837158203125e-07,
+            "max_allowed_absolute_error": 4.786807040735026e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float32",
+          "eager": true,
+          "numerical": {
+            "passed": true,
+            "independent_cpu_fp64_reference": true,
+            "wire_dtype": "torch.float32",
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_allowed_absolute_error": 4.5754673179615805e-07,
+            "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+            "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+          }
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 2.384185791015625e-07,
+              "max_allowed_absolute_error": 4.924051788932646e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 4.76837158203125e-07,
+              "max_allowed_absolute_error": 7.728517522533479e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 9.5367431640625e-07,
+              "max_allowed_absolute_error": 1.251371106272797e-06,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true,
+          "numerical": [
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 2.384185791015625e-07,
+              "max_allowed_absolute_error": 4.6004255593684225e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 4.76837158203125e-07,
+              "max_allowed_absolute_error": 8.617542962164676e-07,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            },
+            {
+              "passed": true,
+              "independent_cpu_fp64_reference": true,
+              "wire_dtype": "torch.float32",
+              "max_absolute_error": 9.5367431640625e-07,
+              "max_allowed_absolute_error": 1.2298733218822036e-06,
+              "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+              "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+            }
+          ],
+          "own_replay_bitwise": true,
+          "restored_input_bitwise": true
+        }
+      ],
+      "actual_peer_log": {
+        "passed": true,
+        "direct_p2p": true,
+        "shm_or_net_data_fallback": false
+      },
+      "scope": "Two-rank protocol check only"
+    }
+  ]
+}

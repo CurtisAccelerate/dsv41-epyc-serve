@@ -1,0 +1,62 @@
+{
+  "release": "transport-v4-20261030",
+  "images": {
+    "hostpair": {
+      "tag": "dsv41-optimized:20261030-transport-v4-hostpair",
+      "built_config_digest": "sha256:208d8d4706349bb3477cb5e2b877e8f997f6e2345c50be33d569d486d2329865",
+      "installed_manifest_sha256": "12f432e447ea4dd9dfe706ab6b5d4befd1c6ad261624b0663019f61683bf5f98"
+    },
+    "p2p4": {
+      "tag": "dsv41-optimized:20261030-transport-v4-p2p4",
+      "built_config_digest": "sha256:dbd8b5590d1be2344e7a1bfca2bcb9df6ede407d629c4298286da431fb3eb92b",
+      "installed_manifest_sha256": "9494693734f79db67bbfecc8ff6312372c18fe3facaade67eea513263082fc6c"
+    }
+  },
+  "passed": {
+    "linux_cpu_unit_tests": 55,
+    "installed_file_identities_each_image": 4471,
+    "checked_file_references_each_image": 4579,
+    "attention_source_attestations_each_image": 48,
+    "cpu_gpu_imports_both_images": true,
+    "complete_cached_base_installer_both_images": true,
+    "host_network_http_200_on_bridge_disabled_daemon": true,
+    "launcher_host_bridge_modes_and_ports": true,
+    "numa_readonly_prefault_handles_unpopulated_mapping": true,
+    "numa_wrong_node_rejected_and_payload_unchanged": true,
+    "actual_vllm_factory_four_gpu_hostpair_selection": true,
+    "actual_profile_prepare_apply_commit_on_real_retained_graphs": true,
+    "actual_r2_three_input_bitwise_parity_all_six_captured_batches_four_ranks": true,
+    "large_actual_communicator_fallback_numerical_contract": true,
+    "native_two_rank_direct_p2p_operator_graph_checks": true,
+    "fp32_two_rank_direct_p2p_operator_graph_checks": true,
+    "native_four_rank_numerical_graph_diagnostic_with_explicit_fallback": true,
+    "own_graph_replay_and_restored_input_bitwise_repeatability": true,
+    "strict_receipt_audit_accepts_actual_live_broadwell_initial_receipts": true,
+    "actual_control_method_rejects_partial_readiness_before_any_prepare_rpc": true,
+    "actual_control_method_accepts_complete_fixture_then_commits_and_resumes": true,
+    "optimized_recipe_cli_and_feature_flags_checked": true
+  },
+  "new_contracts": {
+    "native_sum": "CPU FP64 reference, gamma_(world_size-1)*sum(abs(inputs)) with underflow and final-output cast terms; rejects nonfinite results and wrong shapes",
+    "ordinary_serving_admission": "All four mixed arms, all R2 graph components without exclusions, B7-to-B8 padding and all greedy/sampled samplers are mandatory before production prepare RPC",
+    "numa_observation": "Read-only page prefault before exact numa_maps validation; original node and page-count requirements retained"
+  },
+  "evidence": {
+    "factory_and_r2": "transport-v4-evidence/factory.json",
+    "native_four_rank_diagnostic": "transport-v4-evidence/native-four-rank-diagnostic.json",
+    "native_direct_two_rank": "transport-v4-evidence/native-two-rank.json",
+    "fp32_direct_two_rank": "transport-v4-evidence/fp32-two-rank.json"
+  },
+  "limits": [
+    "No full model startup on the recipient EPYC host for this revision",
+    "Build host has two disjoint peer pairs; four-rank native test explicitly permits fallback and never qualifies direct four-way P2P",
+    "Factory/profile/R2 GPU tests use small synthetic graphs and actual operator integration, not model weights",
+    "Receipt auditor compatibility was tested read-only against original live Broadwell receipts; new EPYC receipts remain required",
+    "NUMA observation mechanism reproduced on CPU; not proved as the cause of every historical page-count shortfall",
+    "Native reduction roundoff contract does not prove original-engine equivalence or model quality",
+    "No measured serving speedup and no claim of zero remaining host-specific failures"
+  ],
+  "full_model_qualified": false,
+  "live_broadwell_modified_or_restarted": false,
+  "gnmac_custom_ring_implemented": false
+}

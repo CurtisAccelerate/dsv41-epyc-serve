@@ -1,0 +1,335 @@
+{
+  "passed": true,
+  "world_size": 4,
+  "ranks": [
+    {
+      "passed": true,
+      "rank": 0,
+      "communicator": "vllm.sm80.distributed.communicator.Sm80CudaCommunicator",
+      "host_selected": true,
+      "pair_ready": true,
+      "profile_transaction": [
+        {
+          "method": "prepare",
+          "phase": "prepared",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "apply",
+          "phase": "applied",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "commit",
+          "phase": "committed",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        }
+      ],
+      "r2_bitwise_parity": [
+        {
+          "batch": 8,
+          "rows": 48,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 6,
+          "rows": 36,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 5,
+          "rows": 30,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 4,
+          "rows": 24,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 3,
+          "rows": 18,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 2,
+          "rows": 12,
+          "bitwise": true,
+          "planned": 3
+        }
+      ],
+      "large_fallback_correct": true,
+      "large_numerical_contract": {
+        "passed": true,
+        "independent_cpu_fp64_reference": true,
+        "wire_dtype": "torch.bfloat16",
+        "max_absolute_error": 0.0625,
+        "max_allowed_absolute_error": 0.1335844861660079,
+        "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+        "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+      },
+      "scope": "Actual dispatch/profile/R2 operator integration with synthetic graphs; no model startup"
+    },
+    {
+      "passed": true,
+      "rank": 1,
+      "communicator": "vllm.sm80.distributed.communicator.Sm80CudaCommunicator",
+      "host_selected": true,
+      "pair_ready": true,
+      "profile_transaction": [
+        {
+          "method": "prepare",
+          "phase": "prepared",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "apply",
+          "phase": "applied",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "commit",
+          "phase": "committed",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        }
+      ],
+      "r2_bitwise_parity": [
+        {
+          "batch": 8,
+          "rows": 48,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 6,
+          "rows": 36,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 5,
+          "rows": 30,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 4,
+          "rows": 24,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 3,
+          "rows": 18,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 2,
+          "rows": 12,
+          "bitwise": true,
+          "planned": 3
+        }
+      ],
+      "large_fallback_correct": true,
+      "large_numerical_contract": {
+        "passed": true,
+        "independent_cpu_fp64_reference": true,
+        "wire_dtype": "torch.bfloat16",
+        "max_absolute_error": 0.0625,
+        "max_allowed_absolute_error": 0.1335844861660079,
+        "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+        "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+      },
+      "scope": "Actual dispatch/profile/R2 operator integration with synthetic graphs; no model startup"
+    },
+    {
+      "passed": true,
+      "rank": 2,
+      "communicator": "vllm.sm80.distributed.communicator.Sm80CudaCommunicator",
+      "host_selected": true,
+      "pair_ready": true,
+      "profile_transaction": [
+        {
+          "method": "prepare",
+          "phase": "prepared",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "apply",
+          "phase": "applied",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "commit",
+          "phase": "committed",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        }
+      ],
+      "r2_bitwise_parity": [
+        {
+          "batch": 8,
+          "rows": 48,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 6,
+          "rows": 36,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 5,
+          "rows": 30,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 4,
+          "rows": 24,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 3,
+          "rows": 18,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 2,
+          "rows": 12,
+          "bitwise": true,
+          "planned": 3
+        }
+      ],
+      "large_fallback_correct": true,
+      "large_numerical_contract": {
+        "passed": true,
+        "independent_cpu_fp64_reference": true,
+        "wire_dtype": "torch.bfloat16",
+        "max_absolute_error": 0.0625,
+        "max_allowed_absolute_error": 0.1335844861660079,
+        "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+        "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+      },
+      "scope": "Actual dispatch/profile/R2 operator integration with synthetic graphs; no model startup"
+    },
+    {
+      "passed": true,
+      "rank": 3,
+      "communicator": "vllm.sm80.distributed.communicator.Sm80CudaCommunicator",
+      "host_selected": true,
+      "pair_ready": true,
+      "profile_transaction": [
+        {
+          "method": "prepare",
+          "phase": "prepared",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "apply",
+          "phase": "applied",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        },
+        {
+          "method": "commit",
+          "phase": "committed",
+          "counts": {
+            "61440": 1,
+            "491520": 1
+          }
+        }
+      ],
+      "r2_bitwise_parity": [
+        {
+          "batch": 8,
+          "rows": 48,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 6,
+          "rows": 36,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 5,
+          "rows": 30,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 4,
+          "rows": 24,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 3,
+          "rows": 18,
+          "bitwise": true,
+          "planned": 3
+        },
+        {
+          "batch": 2,
+          "rows": 12,
+          "bitwise": true,
+          "planned": 3
+        }
+      ],
+      "large_fallback_correct": true,
+      "large_numerical_contract": {
+        "passed": true,
+        "independent_cpu_fp64_reference": true,
+        "wire_dtype": "torch.bfloat16",
+        "max_absolute_error": 0.0625,
+        "max_allowed_absolute_error": 0.1335844861660079,
+        "contract": "gamma_(world_size-1) * sum(abs(inputs)) plus underflow and final-cast terms",
+        "scope": "Reduction roundoff bound, not bitwise equivalence or model quality"
+      },
+      "scope": "Actual dispatch/profile/R2 operator integration with synthetic graphs; no model startup"
+    }
+  ],
+  "full_model_qualified": false
+}

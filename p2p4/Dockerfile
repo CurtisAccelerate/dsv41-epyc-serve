@@ -2,7 +2,7 @@ ARG BASE_IMAGE=dsv41-optimized:20261029-p2p
 FROM ${BASE_IMAGE} AS source
 COPY . /opt/dsv41/p2p4-source/
 LABEL org.opencontainers.image.source="https://github.com/CurtisAccelerate/dsv41-epyc-serve"
-LABEL io.dsv41.startup-contract="transport-v3"
+LABEL io.dsv41.startup-contract="transport-v4"
 ENTRYPOINT ["python3", "/opt/dsv41/entrypoint.py"]
 CMD ["serve"]
 

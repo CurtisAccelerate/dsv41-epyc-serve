@@ -5,7 +5,7 @@ from image_identity import verify_base
 
 BASE='dsv41-optimized:20261029-p2p'
 BASE_ID='sha256:e3bc13c775dee4013f5cfe28688482e0ec8ccb9b045ccb012c9f6e53b56c2726'
-MANIFESTS={'hostpair':'70f183aaed841b1f6d1aebb671c141f2298c42192c5145fc75419e3978504c9f','p2p4':'b0b29cff24261569dea8123fca62fdd51a5b85856b4c0094329590f7bebfd0fc'}
+MANIFESTS={"hostpair":"12f432e447ea4dd9dfe706ab6b5d4befd1c6ad261624b0663019f61683bf5f98","p2p4":"9494693734f79db67bbfecc8ff6312372c18fe3facaade67eea513263082fc6c"}
 
 def inspect(image,format):
     p=subprocess.run(['docker','image','inspect',image,'--format',format],text=True,capture_output=True)
@@ -22,7 +22,7 @@ def main():
         actual=inspect(BASE,'{{.Id}}')
     print('Verified base identity: '+verify_base(BASE,BASE_ID))
     for mode in ('hostpair','p2p4') if a.transport=='both' else (a.transport,):
-        tag='dsv41-optimized:20261030-transport-v3-'+mode
+        tag='dsv41-optimized:20261030-transport-v4-'+mode
         subprocess.run(['docker','build','--network','none','--target',mode,'-t',tag,str(here/'p2p4')],check=True)
         label='hostpair' if mode=='hostpair' else 'nccl-p2p4'
         if inspect(tag,'{{index .Config.Labels "io.dsv41.transport"}}')!=label:
@@ -34,6 +34,7 @@ def main():
         subprocess.run(['docker','run','--rm','--network','none','--entrypoint','python3',tag,
             '/opt/dsv41/p2p4-source/check_startup.py'],check=True)
         print('Complete serving image installed: '+tag)
+    subprocess.run([sys.executable,str(here/'check_network.py'),'--image',tag],check=True)
     print('Next run the four-GPU qualification in p2p4/README.md, then bash p2p4/run.sh.')
 
 if __name__=='__main__':main()

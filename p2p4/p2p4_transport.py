@@ -170,9 +170,9 @@ def collective_parity(worker,rows):
         inp=(torch.randn((rows,5120),device=t.comm.device,generator=g)*scale).to(torch.bfloat16)
         local=inp.float().cpu();peers=[None]*t.world
         dist.all_gather_object(peers,local,group=group)
-        reference=torch.stack(peers).double().sum(0).to(torch.bfloat16)
         out=t.reduce(inp);torch.cuda.synchronize()
-        torch.testing.assert_close(out.cpu(),reference,rtol=1/64,atol=1e-7)
-        tested.append(dict(scale=scale,max_absolute_error=float((out.cpu().float()-reference.float()).abs().max())))
+        from .collective_error import check_reduction
+        bound=check_reduction(peers,out,torch.float32 if t.payload_dtype=='fp32' else inp.dtype)
+        tested.append(dict(scale=scale,**bound))
     return dict(passed=True,independent_cpu_fp64_reference=True,transport='p2p4',world_size=4,
                 tested=tested,scope='Collective operator check; model quality and performance require separate measurement')

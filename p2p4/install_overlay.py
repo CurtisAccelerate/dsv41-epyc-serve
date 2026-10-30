@@ -19,7 +19,7 @@ def patch(path,old,new):
     changed.setdefault(path,sha(path));path.write_text(text.replace(old,new))
 
 module=site/'hybrid/p2p4_transport.py';shutil.copy2(here/'p2p4_transport.py',module)
-for name in ('p2p4_provenance.py','p2p4_journal.py','transport_policy.py'):
+for name in ('p2p4_provenance.py','p2p4_journal.py','transport_policy.py','collective_error.py','optimized_receipts.py'):
     shutil.copy2(here/name,site/'hybrid'/name)
 cuda=site/'vllm/platforms/cuda.py'
 patch(cuda,'if envs.VLLM_HOST_ALLREDUCE:',
@@ -152,10 +152,24 @@ patch(probe,'        allreduce_correct=True,nccl_p2p_connections=len(lines),log_
       '        transport=transport,allreduce_correct=True,nccl_p2p_connections=len(lines),fallback_lines=len(fallbacks),log_directory=directory))')
 trace=site/'hybrid/dsv41_r1_trace.py'
 patch(trace,'r"cross_device|custom_ar", re.I))','r"cross_device|custom_ar|pair_write_bf16", re.I))')
+builder=root/'w9/engram-loader/numa_builder.py'
+patch(builder,'def numa_evidence(mm,nbytes,node):\n',
+'''def numa_evidence(mm,nbytes,node):
+    if len(mm)!=nbytes or nbytes<=0:raise ValueError('Exact payload mapping extent required')
+    # numa_maps counts populated PTEs, not all tmpfs page-cache pages. Read one
+    # byte per page before observing placement; never write or migrate data.
+    prefault_pages=len(mm[::mmap.PAGESIZE])
+''')
+patch(builder,"'resident_pages':expected,'kernel_page_bytes':pagesize}",
+      "'resident_pages':expected,'kernel_page_bytes':pagesize,'read_only_prefault_pages':prefault_pages}")
 # Persist every returned rank row before any comparison can reject it.
 control=root/'w9/resident-api/w9_resident_api/control.py'
 patch(control,"record['steps'].append(dict(method=method,rows=rows))",
       "record['steps'].append(dict(method=method,rows=rows));self.save('collective-'+token+'.json',record)")
+patch(control,"  if self.poisoned:raise RuntimeError('Measured serve refused: poisoned')",
+'''  if self.poisoned:raise RuntimeError('Measured serve refused: poisoned')
+  from hybrid.optimized_receipts import require_optimized
+  require_optimized(json.loads((self.root/'attention-initial.json').read_text()))''')
 plan=site/'hybrid/initial_state_plan.py'
 patch(plan,"    if not excluded:raise ValueError('Missing explicit host collective protocol exclusion')",
 '''    protocol_guard=None
@@ -216,7 +230,7 @@ d['required_environment']['DSV41_TRANSPORT']=mode
 preflight.write_text(json.dumps(d,indent=2))
 manifest=root/'opt/dsv41/manifest.json';d=json.loads(manifest.read_text())
 paths={row['path'] for row in d['files']};paths.add('/usr/local/lib/python3.12/dist-packages/hybrid/p2p4_transport.py')
-for name in ('p2p4_provenance.py','p2p4_journal.py','transport_policy.py'):
+for name in ('p2p4_provenance.py','p2p4_journal.py','transport_policy.py','collective_error.py','optimized_receipts.py'):
     paths.add('/usr/local/lib/python3.12/dist-packages/hybrid/'+name)
 d['files']=[dict(path=p,sha256=sha(root/p.lstrip('/'))) for p in sorted(paths)]
 manifest.write_text(json.dumps(d,indent=2))

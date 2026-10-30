@@ -34,6 +34,30 @@ def census_branch_test():
 async def controller_test():
     spec=importlib.util.spec_from_file_location('tested_control','/w9/resident-api/w9_resident_api/control.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    # Invalid optimization receipts must fail before any production prepare RPC.
+    with tempfile.TemporaryDirectory() as folder:
+        c=module.Control.__new__(module.Control);c.root=pathlib.Path(folder);c.poisoned=False
+        c.root.joinpath('attention-initial.json').write_text(json.dumps(dict(rows=[])))
+        async def forbidden_rpc(*args,**kwargs):raise AssertionError('Admission attempted before full optimized readiness')
+        c.rpc=forbidden_rpc
+        try:await c.serve_measured()
+        except RuntimeError as e:assert 'Four distinct' in str(e)
+        else:raise AssertionError('Partial optimized readiness admitted')
+        from test_optimized_receipts import fixture
+        c.root.joinpath('attention-initial.json').write_text(json.dumps(fixture()))
+        mixed='next-attention-sampler-native-mixed'
+        calls=[]
+        async def serving_rpc(name,args,timeout):
+            calls.append(name);token=args[0];prepare=name.endswith('_prepare')
+            return [dict(ok=True,rank=rank,prepared=prepare,committed=not prepare,token=token,bank=mixed,
+                         identity_sha256='a'*64,production_enabled=True,session_armed=False) for rank in range(4)]
+        async def resume():calls.append('resume')
+        async def paused():return False
+        c.rpc=serving_rpc;c.engine=types.SimpleNamespace(resume_generation=resume,is_paused=paused)
+        c.admission=types.SimpleNamespace();c.production_bank=types.SimpleNamespace()
+        await c.serve_measured()
+        assert c.phase=='serving' and c.admission.open and c.root.joinpath('optimized-serving.json').exists()
+        assert calls==['w47_production_measured_prepare','w47_production_measured_commit','resume']
     for mismatch in (False,True):
         with tempfile.TemporaryDirectory() as folder:
             c=module.Control.__new__(module.Control);c.root=pathlib.Path(folder);c.collective_profile='stock'
@@ -68,6 +92,16 @@ def main():
     command=json.loads(pathlib.Path('/opt/dsv41/serve-command.json').read_text())
     assert command[0]=='python3' and command[1].endswith('.py')
     assert '--disable-custom-all-reduce' in command
+    defaults=json.loads(pathlib.Path('/opt/dsv41/defaults.json').read_text())
+    for key,value in dict(VLLM_USE_V2_MODEL_RUNNER='0',DSV41_R2='1',DSV41_R2_BATCHES='2-8',
+        DSV41_R2_PAD7='1',W26_ATTENTION_BANK='1',W26_ATTENTION_SPLIT='1',W26_SAMPLER_BANK='1',
+        VLLM_EXL3_COOP='1',VLLM_EXL3_TC_MOE_V2='1',VLLM_EXL3_TC_MOE_PREFILL='1').items():
+        assert defaults.get(key)==value,'Optimized recipe flag differs: '+key
+    for key,value in {'--tensor-parallel-size':'4','--pipeline-parallel-size':'1','--max-num-seqs':'8',
+        '--max-num-batched-tokens':'2048','--max-model-len':'262144','--kv-cache-dtype':'fp8_ds_mla'}.items():
+        assert command[command.index(key)+1]==value,'Optimized CLI recipe differs: '+key
+    assert json.loads(command[command.index('--speculative-config')+1])==dict(method='dspark',num_speculative_tokens=5)
+    assert json.loads(command[command.index('--compilation-config')+1])['cudagraph_capture_sizes']==[1,2,3,4,6,8,12,18,24,30,36,48]
     from hybrid.transport_policy import validate_topology
     paired=[[j in (i,i^1) for j in range(4)] for i in range(4)]
     assert validate_topology(paired,'hostpair') and validate_topology([[True]*4 for _ in range(4)],'hostpair')
