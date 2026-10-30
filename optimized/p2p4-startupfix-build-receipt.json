@@ -1,0 +1,41 @@
+{
+  "image_tag": "dsv41-optimized:20261030-epyc-p2p4",
+  "built_image_id": "sha256:9e154f2d718d79a299bc2aa6b8469f7e70ab3c967efc03296b57c95ce41c409c",
+  "installed_manifest_sha256": "5ec7f72cea90478976c9ff96c066ee9d6e07994bbb4c3192c737bb4fd8c9c706",
+  "base_image_id": "sha256:e3bc13c775dee4013f5cfe28688482e0ec8ccb9b045ccb012c9f6e53b56c2726",
+  "repairs": [
+    "Launch preflight through python3",
+    "Correct stale control source pin and propagate source metadata",
+    "Transport-aware census with stable TP4 ownership checked before restore/verify",
+    "Owner-scoped capture provenance with generation, sealing, reset and weak lifetime",
+    "Persist all prepare/apply count maps and semantic inventories before comparison",
+    "Support OCI-manifest image IDs through exact rootfs/runtime-config verification"
+  ],
+  "validated": {
+    "complete_image_build": true,
+    "end_to_end_installer_with_cached_base": true,
+    "installed_files_verified": 4468,
+    "file_references_verified": 4576,
+    "attention_source_attestations": 48,
+    "gpu_imports_and_tp4_communicator_selection": true,
+    "cpu_regression_tests": 34,
+    "two_rank_operator_and_graph_cases_per_rank": 36,
+    "cuda_reset_recapture_cycles_per_rank": 96,
+    "actual_distinct_handles_rank0_rank1": [26, 43],
+    "vllm_segmented_capture_wrapper": true,
+    "genuine_count_mismatch_rejected_and_rank_maps_saved": true,
+    "legacy_empty_host_census_still_rejected": true,
+    "invalid_p2p_transport_prevents_journal_restore_and_verify": true,
+    "bash_launcher_syntax": true,
+    "privacy_scan": true
+  },
+  "gpu_test_evidence": "../p2p4/startupfix-pair-result.json",
+  "limits": [
+    "Raw-handle reuse is a demonstrated bug; its cause in the recipient mismatch is not proved because failed rank maps were not saved",
+    "Full four-GPU optimized model startup on this revision remains unqualified",
+    "No model quality, acceptance or performance measurements on this revision",
+    "Containerd fallback verified by fixtures; no Docker 29 containerd host available locally"
+  ],
+  "full_four_way_serving_qualified": false,
+  "existing_live_server_modified_or_restarted": false
+}

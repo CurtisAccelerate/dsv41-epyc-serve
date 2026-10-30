@@ -40,7 +40,44 @@ def worker(rank,world,port,folder):
                     torch.cuda.synchronize();verify(out,expected)
                 checks.append(dict(rows=rows,dtype=str(dtype),graph_replays=3,
                     changed_inputs=True,poisoned_output=True,nccl_kernel_nodes=True))
+        # Exercise actual CUDA graph reset, recapture and transient handle reuse.
+        handles=[];last_generation=0
+        for cycle in range(48):
+            graph=torch.cuda.CUDAGraph(keep_graph=True)
+            x=torch.randn(6,5120,device=f'cuda:{rank}',dtype=torch.bfloat16)
+            for repeat in range(2):
+                stream=torch.cuda.Stream();dist.barrier()
+                with torch.cuda.graph(graph,stream=stream):out=transport.reduce(x)
+                graph.instantiate()
+                record=peer.CAPTURES.get(graph)
+                if len(record.rows)!=1 or record.generation<=last_generation:
+                    raise RuntimeError('Capture inherited stale collective provenance')
+                last_generation=record.generation;handles.append(graph.raw_cuda_graph())
+                peer.graph_signature((graph,))
+                expected=reference(x);out.fill_(float('nan'));graph.replay()
+                torch.cuda.synchronize();verify(out,expected)
+                graph.reset()
+                try:peer.graph_signature((graph,))
+                except RuntimeError:pass
+                else:raise RuntimeError('Reset graph retained usable provenance')
+            del graph
+        # Exercise the exact segmented wrapper used by retained vLLM baseline graphs.
+        from vllm.compilation.breakable_cudagraph import BreakableCUDAGraphCapture
+        x=torch.randn(6,5120,device=f'cuda:{rank}',dtype=torch.bfloat16)
+        stream=torch.cuda.Stream();dist.barrier()
+        with torch.cuda.stream(stream):
+            cap=BreakableCUDAGraphCapture()
+            with cap:
+                first=transport.reduce(x)
+                cap.add_eager(lambda:None)
+                second=transport.reduce(first)
+        for segment in cap.kernel_patchable_graphs:peer.graph_signature((segment,))
+        assert len(cap.kernel_patchable_graphs)==2
+        expected=reference(reference(x).to(x.device))
+        second.fill_(float('nan'));cap.replay();torch.cuda.synchronize();verify(second,expected)
         receipt=dict(passed=True,rank=rank,world_size=world,transport=transport.status(),
+                     vllm_segmented_capture_passed=True,
+                     lifecycle_graph_captures=96,distinct_raw_handles=len(set(handles)),
                      checks=checks,actual_peer_log=peer._p2p_log(),
                      scope='Two-rank protocol check only' if world==2 else 'Four-rank transport operator and CUDA graph qualification')
         pathlib.Path(folder,f'rank-{rank}.json').write_text(json.dumps(receipt,indent=2))

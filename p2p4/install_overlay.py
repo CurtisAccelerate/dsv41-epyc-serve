@@ -17,6 +17,8 @@ def patch(path,old,new):
     changed.setdefault(path,sha(path));path.write_text(text.replace(old,new))
 
 module=site/'hybrid/p2p4_transport.py';shutil.copy2(here/'p2p4_transport.py',module)
+for name in ('p2p4_provenance.py','p2p4_journal.py'):
+    shutil.copy2(here/name,site/'hybrid'/name)
 cuda=site/'vllm/platforms/cuda.py'
 patch(cuda,'if envs.VLLM_HOST_ALLREDUCE:',
       'if envs.VLLM_HOST_ALLREDUCE or __import__("os").environ.get("DSV41_TRANSPORT")=="p2p4":')
@@ -115,6 +117,7 @@ patch(verify,"    production=json.loads((path.parent/'optimized-serving.json').r
     if len(state.get('ranks',[]))!=4:raise RuntimeError('Four transport receipts required')
     production=json.loads((path.parent/'optimized-serving.json').read_text())''')
 command=root/'opt/dsv41/serve-command.json';cmd=json.loads(command.read_text())
+if cmd[0].endswith('.py'):cmd.insert(0,'python3')
 if '--disable-custom-all-reduce' not in cmd:cmd.append('--disable-custom-all-reduce')
 command.write_text(json.dumps(cmd,indent=2))
 defaults=root/'opt/dsv41/defaults.json';env=json.loads(defaults.read_text())
@@ -122,6 +125,41 @@ env.update(DSV41_TRANSPORT='p2p4',VLLM_HOST_ALLREDUCE='0',W15_PAIR_TRANSPORT='0'
            NCCL_SHM_DISABLE='1',NCCL_DEBUG='INFO',NCCL_DEBUG_SUBSYS='INIT,GRAPH,P2P',
            NCCL_DEBUG_FILE='/tmp/dsv41-nccl4.%p.log')
 defaults.write_text(json.dumps(env,indent=2))
+# Persist every returned rank row before any comparison can reject it.
+control=root/'w9/resident-api/w9_resident_api/control.py'
+patch(control,"record['steps'].append(dict(method=method,rows=rows))",
+      "record['steps'].append(dict(method=method,rows=rows));self.save('collective-'+token+'.json',record)")
+plan=site/'hybrid/initial_state_plan.py'
+patch(plan,"    if not excluded:raise ValueError('Missing explicit host collective protocol exclusion')",
+'''    protocol_guard=None
+    from . import p2p4_transport as peer
+    if peer.enabled():
+        from .p2p4_journal import PeerGuard
+        protocol_guard=PeerGuard(runner)
+        if excluded:raise ValueError('Unexpected host protocol state in P2P4 census')
+    elif not excluded:raise ValueError('Missing explicit host collective protocol exclusion')''')
+patch(plan,'qualified=False,forbidden_device_ranges=excluded,',
+      'qualified=False,forbidden_device_ranges=excluded,protocol_guard=protocol_guard,')
+patch(plan,"        self.torch=torch\n        self.gpu=ByteJournal",
+'''        self.torch=torch
+        self.protocol_guard=plan.get('protocol_guard')
+        if self.protocol_guard is not None:self.protocol_guard.check()
+        self.gpu=ByteJournal''')
+patch(plan,'    def restore(self):\n        self.torch.cuda.synchronize()',
+'''    def restore(self):
+        if self.protocol_guard is not None:self.protocol_guard.check()
+        self.torch.cuda.synchronize()''')
+patch(plan,'    def verify(self):\n        bindings_ok=',
+'''    def verify(self):
+        if self.protocol_guard is not None:self.protocol_guard.check()
+        bindings_ok=''')
+# Repair the documented stale source pin BEFORE propagating edited identities.
+attention=site/'hybrid/attention-imports.json';data=json.loads(attention.read_text())
+changed.setdefault(attention,sha(attention))
+for item in data['files']:
+    if item['module']=='w9_resident_api.control':
+        item['sha256']=changed[control]
+attention.write_text(json.dumps(data,indent=2))
 # Update content identities of edited source, including dependencies embedded in
 # the component source manifests. Parameter ABI and compiled expert pins are unchanged.
 texts=[]
@@ -151,6 +189,8 @@ d['required_environment']['DSV41_TRANSPORT']='p2p4'
 preflight.write_text(json.dumps(d,indent=2))
 manifest=root/'opt/dsv41/manifest.json';d=json.loads(manifest.read_text())
 paths={row['path'] for row in d['files']};paths.add('/usr/local/lib/python3.12/dist-packages/hybrid/p2p4_transport.py')
+for name in ('p2p4_provenance.py','p2p4_journal.py'):
+    paths.add('/usr/local/lib/python3.12/dist-packages/hybrid/'+name)
 d['files']=[dict(path=p,sha256=sha(root/p.lstrip('/'))) for p in sorted(paths)]
 manifest.write_text(json.dumps(d,indent=2))
 for p in changed:

@@ -8,9 +8,9 @@ Use the new [EPYC P2P4 build](p2p4/README.md) for full four-rank GPU-memory TP a
 python3 install_p2p4.py
 ```
 
-Then run the four-GPU qualification and `bash p2p4/run.sh` as documented in the [EPYC guide](p2p4/README.md). The installed image is `dsv41-optimized:20261029-epyc-p2p4`. This installs the verified complete base image and builds a small, pinned transport layer locally. The [EPYC release kit](https://github.com/CurtisAccelerate/dsv41-epyc-serve/releases/tag/epyc-p2p4-20261029) contains the same installer and source.
+Then run the four-GPU qualification and `bash p2p4/run.sh` as documented in the [EPYC guide](p2p4/README.md). The installed image is `dsv41-optimized:20261030-epyc-p2p4`. This installs the verified complete base image and builds a small, pinned transport layer locally. The [EPYC release kit](https://github.com/CurtisAccelerate/dsv41-epyc-serve/releases/tag/epyc-p2p4-startupfix-20261030) contains the same installer and source.
 
-The image has been built and passed source/GPU-import checks, transport-plan checks, and two-rank eager/captured-graph operator checks. **Full four-GPU serving, quality and performance remain pending on EPYC.** Missing peer links are rejected. No speedup is promised before a matched benchmark. See the [build receipt](optimized/p2p4-build-receipt.json).
+The image has been built and passed source/GPU-import checks, transport-plan checks, and two-rank eager/captured-graph operator checks. **Full four-GPU serving, quality and performance remain pending on EPYC.** Missing peer links are rejected. No speedup is promised before a matched benchmark. See the [build receipt](optimized/p2p4-startupfix-build-receipt.json).
 
 ## Original hybrid base and control
 

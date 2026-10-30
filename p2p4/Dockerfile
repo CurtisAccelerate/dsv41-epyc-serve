@@ -14,5 +14,6 @@ COPY . /opt/dsv41/p2p4-source/
 RUN python3 /opt/dsv41/p2p4-source/install_overlay.py
 LABEL org.opencontainers.image.source="https://github.com/CurtisAccelerate/dsv41-epyc-serve"
 LABEL io.dsv41.transport="nccl-p2p4"
+LABEL io.dsv41.startup-contract="owner-generation-v2"
 ENTRYPOINT ["python3", "/opt/dsv41/entrypoint.py"]
 CMD ["serve"]

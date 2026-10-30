@@ -63,7 +63,8 @@ def main():
         process.kill();process.wait();raise
     if process.wait():raise RuntimeError('docker load failed')
     actual=subprocess.check_output(['docker','image','inspect',TAG,'--format','{{.Id}}'],text=True).strip()
-    if actual!=EXPECTED_IMAGE:raise RuntimeError('Loaded image identity differs: '+actual)
+    from image_identity import verify_base
+    print('Verified loaded base: '+verify_base(TAG,EXPECTED_IMAGE))
     subprocess.run(['docker','run','--rm','--network','none',TAG,'check'],check=True)
     print('Verified complete optimized image: '+TAG)
     print('Unzip dsv41-optimized-kit.zip, set EXL3_DIR, FP8_DIR and ENGRAM_DIR, then bash run.sh.')

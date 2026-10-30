@@ -3,7 +3,7 @@ set -euo pipefail
 : "${EXL3_DIR:?Set EXL3_DIR to the DeepSeek V4.1 Flash 1017 EXL3 checkpoint directory}"
 : "${FP8_DIR:?Set FP8_DIR to the matching original FP8 checkpoint directory}"
 : "${ENGRAM_DIR:?Set ENGRAM_DIR to the matching Engram shard directory; it may equal FP8_DIR}"
-image=${DSV41_IMAGE:-dsv41-optimized:20261029-epyc-p2p4}
+image=${DSV41_IMAGE:-dsv41-optimized:20261030-epyc-p2p4}
 name=${DSV41_CONTAINER:-dsv41-optimized}
 gpus=${DSV41_GPUS:-}
 if [ -z "$gpus" ]; then

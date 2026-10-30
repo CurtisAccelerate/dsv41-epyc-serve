@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Install the complete serving base and build its pinned EPYC TP4 transport."""
 import argparse, hashlib, pathlib, subprocess, sys
+from image_identity import verify_base
 
 BASE='dsv41-optimized:20261029-p2p'
 BASE_ID='sha256:e3bc13c775dee4013f5cfe28688482e0ec8ccb9b045ccb012c9f6e53b56c2726'
-TAG='dsv41-optimized:20261029-epyc-p2p4'
-MANIFEST='59d2c888070b4e71a31bf00a214b44038995ab1c377c65fa79aab67d48613ca2'
+TAG='dsv41-optimized:20261030-epyc-p2p4'
+MANIFEST='5ec7f72cea90478976c9ff96c066ee9d6e07994bbb4c3192c737bb4fd8c9c706'
 
 def inspect(image,format):
     p=subprocess.run(['docker','image','inspect',image,'--format',format],text=True,capture_output=True)
@@ -19,7 +20,7 @@ def main():
     if actual is None:
         subprocess.run([sys.executable,str(here/'install_image.py'),'--directory',a.directory],check=True)
         actual=inspect(BASE,'{{.Id}}')
-    if actual!=BASE_ID:raise RuntimeError('Base image identity differs; restore the pinned base with install_image.py')
+    print('Verified base identity: '+verify_base(BASE,BASE_ID))
     subprocess.run(['docker','build','--network','none','-t',TAG,str(here/'p2p4')],check=True)
     if inspect(TAG,'{{index .Config.Labels "io.dsv41.transport"}}')!='nccl-p2p4':
         raise RuntimeError('Four-way image transport label missing')
@@ -27,6 +28,8 @@ def main():
                                  '/opt/dsv41/manifest.json'])
     if hashlib.sha256(raw).hexdigest()!=MANIFEST:raise RuntimeError('Installed source manifest differs')
     subprocess.run(['docker','run','--rm','--network','none',TAG,'check'],check=True)
+    subprocess.run(['docker','run','--rm','--network','none','--entrypoint','python3',TAG,
+        '/opt/dsv41/p2p4-source/check_startup.py'],check=True)
     print('Complete EPYC P2P4 serving image installed: '+TAG)
     print('Next run the four-GPU qualification in p2p4/README.md, then bash p2p4/run.sh.')
 

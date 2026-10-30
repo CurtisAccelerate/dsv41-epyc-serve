@@ -1,0 +1,460 @@
+{
+  "passed": true,
+  "world_size": 2,
+  "full_four_way_qualified": false,
+  "independent_cpu_fp64_reference": true,
+  "changed_input_and_poisoned_output_checks": true,
+  "captured_nccl_kernel_evidence": true,
+  "ranks": [
+    {
+      "passed": true,
+      "rank": 0,
+      "world_size": 2,
+      "transport": {
+        "transport": "p2p4",
+        "backend": "pynccl-device-memory",
+        "world_size": 2,
+        "payload_host_bytes": 0,
+        "host_collective_enabled": false,
+        "pair_collective_enabled": false,
+        "fp32_accumulation_for_half": true,
+        "captured_graphs": 8,
+        "enqueue_calls": 152
+      },
+      "vllm_segmented_capture_passed": true,
+      "lifecycle_graph_captures": 96,
+      "distinct_raw_handles": 26,
+      "checks": [
+        {
+          "rows": 1,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        }
+      ],
+      "actual_peer_log": {
+        "passed": true,
+        "direct_p2p": true,
+        "shm_or_net_data_fallback": false
+      },
+      "scope": "Two-rank protocol check only"
+    },
+    {
+      "passed": true,
+      "rank": 1,
+      "world_size": 2,
+      "transport": {
+        "transport": "p2p4",
+        "backend": "pynccl-device-memory",
+        "world_size": 2,
+        "payload_host_bytes": 0,
+        "host_collective_enabled": false,
+        "pair_collective_enabled": false,
+        "fp32_accumulation_for_half": true,
+        "captured_graphs": 8,
+        "enqueue_calls": 152
+      },
+      "vllm_segmented_capture_passed": true,
+      "lifecycle_graph_captures": 96,
+      "distinct_raw_handles": 43,
+      "checks": [
+        {
+          "rows": 1,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.bfloat16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.bfloat16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float16",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float16",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 1,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 12,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 18,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 24,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 30,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 36,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 128,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 2048,
+          "dtype": "torch.float32",
+          "eager": true
+        },
+        {
+          "rows": 6,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        },
+        {
+          "rows": 48,
+          "dtype": "torch.float32",
+          "graph_replays": 3,
+          "changed_inputs": true,
+          "poisoned_output": true,
+          "nccl_kernel_nodes": true
+        }
+      ],
+      "actual_peer_log": {
+        "passed": true,
+        "direct_p2p": true,
+        "shm_or_net_data_fallback": false
+      },
+      "scope": "Two-rank protocol check only"
+    }
+  ]
+}

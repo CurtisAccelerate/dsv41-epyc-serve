@@ -1,5 +1,7 @@
 # EPYC four-way P2P serving
 
+The October 30 revision includes the consolidated [startup repair and recipient procedure](STARTUP_REPAIR.md). Use the new image tag below; the original candidate failed startup on EPYC.
+
 This builds the complete optimized serving runtime with a full four-rank GPU-memory NCCL all-reduce. HOSTSHM and pair transport are disabled. The pinned expert, attention, DSpark K5, sampler, TC MoE/prefill, capture plan and resident Engram optimizations remain installed.
 
 The implementation has passed source/dependency checks and two-rank eager and CUDA graph operator checks. **Four-GPU inference, quality, acceptance and performance are pending on EPYC.** The build host supports peer access only within two pairs, so it cannot qualify the four-way mode. No measured speedup is claimed.
@@ -12,7 +14,7 @@ From the repository root (or unpacked EPYC release kit):
 python3 install_p2p4.py
 ```
 
-Requires Linux, Python 3, Docker, NVIDIA Container Toolkit, four peer-accessible SM80 GPUs and sufficient host memory for the approximately 189 GiB resident Engram backing. The installer reuses the exact complete base image if installed; otherwise it downloads the verified 9.3 GB base from GitHub Releases. Allow at least 50 GB of free Docker/download storage. It then builds and verifies `dsv41-optimized:20261029-epyc-p2p4` locally, without fetching build dependencies. Model weights are supplied separately.
+Requires Linux, Python 3, Docker, NVIDIA Container Toolkit, four peer-accessible SM80 GPUs and sufficient host memory for the approximately 189 GiB resident Engram backing. The installer reuses the exact complete base image if installed; otherwise it downloads the verified 9.3 GB base from GitHub Releases. Allow at least 50 GB of free Docker/download storage. It then builds and verifies `dsv41-optimized:20261030-epyc-p2p4` locally, without fetching build dependencies. Model weights are supplied separately.
 
 ## Qualify four-way transport
 
@@ -20,7 +22,7 @@ Select exactly the four intended GPUs; the example indices must be adjusted to t
 
 ```bash
 docker run --name dsv41-p2p4-qualification --gpus '"device=0,1,3,4"' \
-  --shm-size 2g --entrypoint python3 dsv41-optimized:20261029-epyc-p2p4 \
+  --shm-size 2g --entrypoint python3 dsv41-optimized:20261030-epyc-p2p4 \
   /opt/dsv41/p2p4-source/qualify_transport.py
 docker cp dsv41-p2p4-qualification:/tmp/dsv41-p2p4-qualification ./p2p4-qualification
 docker rm dsv41-p2p4-qualification

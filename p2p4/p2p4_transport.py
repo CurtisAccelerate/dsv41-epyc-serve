@@ -4,9 +4,9 @@ The legacy 'six' control label is retained only for graph-bank compatibility.
 It never selects a host-memory kernel in this mode.
 """
 import collections, ctypes as C, os, pathlib
+from .p2p4_provenance import REGISTRY as CAPTURES, install_hooks
 
 TRANSPORT=None
-CAPTURES={}
 
 def enabled():return os.environ.get('DSV41_TRANSPORT')=='p2p4'
 
@@ -20,7 +20,7 @@ def _captured_graph(stream):
     _call('cuStreamGetCaptureInfo_v2',C.c_void_p(stream),C.byref(status),C.byref(identity),
           C.byref(graph),None,None)
     if status.value!=1 or not graph.value:raise RuntimeError('Active capture graph identity unavailable')
-    return graph.value
+    return (identity.value,graph.value)
 
 def _p2p_log():
     raw=os.environ.get('NCCL_DEBUG_FILE','')
@@ -35,6 +35,8 @@ def _p2p_log():
 
 class Transport:
     def __init__(self,comm,expected_world=4):
+        import torch
+        install_hooks(torch.cuda.CUDAGraph,lambda:_captured_graph(torch.cuda.current_stream().cuda_stream))
         if not comm.available or comm.disabled or comm.world_size!=expected_world:
             raise RuntimeError('Required PyNCCL peer communicator unavailable')
         self.comm=comm;self.world=comm.world_size;self.rank=comm.rank;self.calls=0
@@ -58,9 +60,9 @@ class Transport:
         if out is None:raise RuntimeError('Required P2P all-reduce declined the tensor')
         self.calls+=1
         if torch.cuda.is_current_stream_capturing():
-            graph=_captured_graph(torch.cuda.current_stream().cuda_stream)
-            CAPTURES.setdefault(graph,[]).append((inp.numel()*inp.element_size(),str(inp.dtype),
-                                                 wire.numel()*wire.element_size(),str(wire.dtype)))
+            identity=_captured_graph(torch.cuda.current_stream().cuda_stream)
+            CAPTURES.append(identity,self,(inp.numel()*inp.element_size(),str(inp.dtype),
+                                           wire.numel()*wire.element_size(),str(wire.dtype)))
         return out.to(inp.dtype) if wire.dtype!=inp.dtype else out
     def status(self):
         self.require()
@@ -86,7 +88,7 @@ def graph_signature(graphs):
     from .private_nodes import Driver,nodes
     result=collections.Counter();driver=Driver()
     for graph in graphs:
-        records=CAPTURES.get(graph.raw_cuda_graph())
+        records=CAPTURES.get(graph).rows
         if not records:raise RuntimeError('Graph has no recorded TP4 device-memory all-reduces')
         names=[]
         for _,params in nodes(driver,graph):
@@ -115,29 +117,36 @@ def health():
 def inventory():
     from w9_exl_ab import runtime as R
     from w9_exl_ab.node_versions import graph_objects
-    require();counts=collections.Counter();seen=set()
+    require();counts=collections.Counter();seen=set();semantic=[]
     for (_,key),wrapper in R.S.all_graph_refs.items():
         for graph in graph_objects(wrapper,key):
-            if graph.raw_cuda_graph() in seen:continue
-            seen.add(graph.raw_cuda_graph())
-            if graph.raw_cuda_graph() not in CAPTURES:continue
-            for row,n in graph_signature((graph,)).items():
+            if id(graph) in seen:continue
+            seen.add(id(graph))
+            record=CAPTURES.get(graph)
+            if not record.rows:continue
+            signature=graph_signature((graph,))
+            semantic.append(dict(descriptor=repr(key),world_size=4,
+                payloads=sorted([list(k[1:])+[n] for k,n in signature.items() if k[0]=='p2p4']),
+                nccl_kernels=sum(k[2]*n for k,n in signature.items() if k[0]=='nccl-kernels')))
+            for row,n in signature.items():
                 if row[0]=='p2p4':counts[row[1]]+=n
     if not counts.get(61440):raise RuntimeError('No six-row serving graph has P2P all-reduce coverage')
-    return dict(counts)
+    return dict(counts),sorted(semantic,key=repr)
 
 def profile_invoke(worker,method,token,profile,CP):
     require()
     if profile not in ('stock','six'):raise ValueError('Host/pair profile unavailable in four-way P2P mode')
     if method=='prepare':
         if CP.TX is not None:raise RuntimeError('Collective profile transaction already pending')
-        counts=inventory();_p2p_log()
-        CP.TX=dict(token=token,profile=profile,previous=CP.PROFILE,phase='prepared',counts=counts)
+        counts,semantic=inventory();_p2p_log()
+        CP.TX=dict(token=token,profile=profile,previous=CP.PROFILE,phase='prepared',counts=counts,semantic=semantic)
         return dict(ok=True,rank=int(worker.rank),result=dict(CP.TX,transport='p2p4',executable_updates=0))
     if method=='abort':
         CP.TX=None;return dict(ok=True,rank=int(worker.rank),result=dict(token=token,phase='aborted',profile=CP.PROFILE))
     if CP.TX is None or CP.TX['token']!=token or CP.TX['profile']!=profile:raise RuntimeError('Wrong collective transaction')
     if method=='apply' and CP.TX['phase']=='prepared':
+        counts,semantic=inventory()
+        if counts!=CP.TX['counts'] or semantic!=CP.TX['semantic']:raise RuntimeError('Live graph provenance changed during transaction')
         CP.TX['phase']='applied';return dict(ok=True,rank=int(worker.rank),result=dict(CP.TX,transport='p2p4',executable_updates=0))
     if method=='commit' and CP.TX['phase']=='applied':
         CP.PROFILE=profile;result=dict(CP.TX,phase='committed',transport='p2p4',executable_updates=0);CP.TX=None
