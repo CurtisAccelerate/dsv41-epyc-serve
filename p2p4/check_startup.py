@@ -1,5 +1,5 @@
 """Validate assembled release metadata, launch command and controller rejection diagnostics."""
-import ast,asyncio,copy,hashlib,importlib.util,json,pathlib,tempfile,types,os
+import ast,asyncio,copy,hashlib,importlib.util,json,pathlib,tempfile,types,os,re
 from unittest.mock import patch
 
 def digest(path):return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
@@ -68,6 +68,13 @@ def main():
     command=json.loads(pathlib.Path('/opt/dsv41/serve-command.json').read_text())
     assert command[0]=='python3' and command[1].endswith('.py')
     assert '--disable-custom-all-reduce' in command
+    from hybrid.transport_policy import validate_topology
+    paired=[[j in (i,i^1) for j in range(4)] for i in range(4)]
+    assert validate_topology(paired,'hostpair') and validate_topology([[True]*4 for _ in range(4)],'hostpair')
+    trace=ast.parse(pathlib.Path('/usr/local/lib/python3.12/dist-packages/hybrid/dsv41_r1_trace.py').read_text())
+    nodes=[n for n in trace.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='_NAME_CLASSES' for t in n.targets) or isinstance(n,ast.FunctionDef) and n.name=='classify_kernel']
+    namespace=dict(re=re);exec(compile(ast.Module(body=nodes,type_ignores=[]),'<trace-classifier>','exec'),namespace)
+    assert namespace['classify_kernel']('pair_write_bf16')=='collectives'
     asyncio.run(controller_test())
     census_branch_test()
     print('P2P4_STARTUP_ASSEMBLY_PASSED '+json.dumps(dict(checked_file_references=count,

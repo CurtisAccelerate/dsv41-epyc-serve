@@ -10,6 +10,11 @@ TRANSPORT=None
 
 def enabled():return os.environ.get('DSV41_TRANSPORT')=='p2p4'
 
+def payload_mode():
+    mode=os.environ.get('DSV41_P2P_PAYLOAD_DTYPE','native')
+    if mode not in ('native','fp32'):raise ValueError('DSV41_P2P_PAYLOAD_DTYPE must be native or fp32')
+    return mode
+
 def _call(name,*args):
     if not hasattr(_call,'driver'):_call.driver=C.CDLL('libcuda.so.1')
     f=getattr(_call.driver,name);f.restype=C.c_int;code=f(*args)
@@ -40,10 +45,11 @@ class Transport:
         if not comm.available or comm.disabled or comm.world_size!=expected_world:
             raise RuntimeError('Required PyNCCL peer communicator unavailable')
         self.comm=comm;self.world=comm.world_size;self.rank=comm.rank;self.calls=0
-        self.expected_world=expected_world;self._identity=self.binding()
+        self.expected_world=expected_world;self.payload_dtype=payload_mode();self._identity=self.binding()
     def binding(self):
-        return (id(self.comm),int(self.comm.comm.value),str(self.comm.device),self.comm.world_size)
+        return (id(self.comm),int(self.comm.comm.value),str(self.comm.device),self.comm.world_size,self.payload_dtype)
     def require(self):
+        if payload_mode()!=self.payload_dtype:raise RuntimeError('Payload policy changed after communicator initialization')
         if self.binding()!=self._identity or self.comm.disabled or not self.comm.available:
             raise RuntimeError('P2P communicator changed or became unavailable')
         if any(os.environ.get(k)!=v for k,v in
@@ -53,9 +59,9 @@ class Transport:
         import torch
         self.require()
         if not inp.is_cuda or inp.device!=self.comm.device:raise RuntimeError('Wrong collective device')
-        # Keep accumulation in FP32 for FP16/BF16 activations, as the previous
-        # host kernel did. NCCL's reduction order still needs quality qualification.
-        wire=inp.float() if inp.dtype in (torch.float16,torch.bfloat16) else inp
+        # Native preserves the input representation on the wire. FP32 is an
+        # explicit numerical comparison mode, with higher communication cost.
+        wire=inp.float() if self.payload_dtype=='fp32' and inp.dtype in (torch.float16,torch.bfloat16) else inp
         out=self.comm.all_reduce(wire)
         if out is None:raise RuntimeError('Required P2P all-reduce declined the tensor')
         self.calls+=1
@@ -68,7 +74,8 @@ class Transport:
         self.require()
         return dict(transport='p2p4',backend='pynccl-device-memory',world_size=self.world,
                     payload_host_bytes=0,host_collective_enabled=False,pair_collective_enabled=False,
-                    fp32_accumulation_for_half=True,captured_graphs=len(CAPTURES),enqueue_calls=self.calls)
+                    payload_dtype_policy=self.payload_dtype,
+                    fp32_accumulation_for_half=self.payload_dtype=='fp32',captured_graphs=len(CAPTURES),enqueue_calls=self.calls)
 
 def register(comm):
     global TRANSPORT

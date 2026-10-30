@@ -1,0 +1,70 @@
+{
+  "release": "transport-v3-20261030",
+  "base_config_digest": "sha256:e3bc13c775dee4013f5cfe28688482e0ec8ccb9b045ccb012c9f6e53b56c2726",
+  "images": {
+    "hostpair": {
+      "tag": "dsv41-optimized:20261030-transport-v3-hostpair",
+      "built_config_digest": "sha256:538f9d221ccd1a296cd439687e206583c886a70a27279e8211ba750a8d235892",
+      "installed_manifest_sha256": "70f183aaed841b1f6d1aebb671c141f2298c42192c5145fc75419e3978504c9f"
+    },
+    "p2p4": {
+      "tag": "dsv41-optimized:20261030-transport-v3-p2p4",
+      "built_config_digest": "sha256:e5b1c95a8b15fac516e031000662846467760d0c0dd90283e3dceda80058c2b8",
+      "installed_manifest_sha256": "b0b29cff24261569dea8123fca62fdd51a5b85856b4c0094329590f7bebfd0fc"
+    }
+  },
+  "installed_sources": {
+    "host_shm_all_reduce.py": "6cb07b69e1f29543669a0ed6fe956b0f8a1b1f8b2bcf2b4bc6966ef27082902b",
+    "pair_transport.py": "d3e646fdd6d612e08a26e0f81849da194ca44ac27125bf9679e14fe32abc255a",
+    "pair_write.sm80.cubin": "04ddd502f8cd651eb16d336804f0b1a2fc2a93061683f6dccb2ff009b63d1d65",
+    "transport_policy.py": "3ba33cbf1b83235ecf6ad2162dc5933c03eac653e2569d6b8628bcfdc4236fca",
+    "p2p4_transport.py": "f770653cd3ddc9c74d5e1dbf4f5303319380c2b6fca40a97ebbf7b3d143f49c5"
+  },
+  "passed": {
+    "cpu_test_methods": 43,
+    "hostpair_optional_cross_pair_matrices": 256,
+    "missing_required_links_rejected": true,
+    "both_complete_image_builds_and_cached_base_installer": true,
+    "installed_files_each": 4469,
+    "metadata_file_references_each": 4577,
+    "attention_source_attestations_each": 48,
+    "gpu_imports_and_communicator_selection_both": true,
+    "hostpair_four_rank_preflight_on_two_pair_hardware": true,
+    "hostpair_four_rank_operator_and_graph_cases_per_rank": 11,
+    "hostpair_changed_inputs_and_poisoned_output": true,
+    "actual_pair_kernel_in_captured_graphs": true,
+    "minimum_completed_pair_generations_every_block_rank": 5,
+    "pair_sticky_errors_clear": true,
+    "large_prefill_declined_by_host_cap": true,
+    "p2p_native_two_rank_cases_per_rank": 36,
+    "p2p_fp32_two_rank_cases_per_rank": 36,
+    "p2p_lifecycle_captures_per_rank_per_mode": 96,
+    "p2p_actual_wire_dtype_and_bytes_match_each_policy": true,
+    "independent_cpu_fp64_references": true,
+    "pair_trace_classifier_correct": true,
+    "bash_launcher_syntax": true
+  },
+  "evidence": {
+    "hostpair": "transport-v3-evidence/hostpair.json",
+    "p2p_native": "transport-v3-evidence/native.json",
+    "p2p_fp32": "transport-v3-evidence/fp32.json"
+  },
+  "broadwell_live_read_only_confirmation": {
+    "image": "sha256:6aaf027853aad0d170260f74930a45c57511c2262cffb552fefc49edaaf79dc7",
+    "runner_setting": "0",
+    "VLLM_HOST_ALLREDUCE": "1",
+    "W15_PAIR_TRANSPORT": "1",
+    "host_source_sha256": "6cb07b69e1f29543669a0ed6fe956b0f8a1b1f8b2bcf2b4bc6966ef27082902b",
+    "pair_source_sha256": "b0bc112da608c27b66dafbf1083d246cc816c1f4e153b1f1ed7f0705b67a12b4",
+    "restarted_or_modified": false
+  },
+  "remaining_recipient_qualification": [
+    "HOSTSHM/pair execution on the fully peer-connected EPYC host; local hardware only has two disjoint pairs",
+    "Four-rank native-payload NCCL execution on all-pairs hardware; local NCCL operator tests used two connected ranks",
+    "Full-model mixed-bank admission and generated verification tokens for each new variant",
+    "Matched numerical/model-quality, prefill/decode benchmarks and request-specific CUPTI proof"
+  ],
+  "measured_serving_speedup": null,
+  "gnmac_custom_ring_implemented": false,
+  "full_model_qualified": false
+}

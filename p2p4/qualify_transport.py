@@ -32,6 +32,10 @@ def worker(rank,world,port,folder):
                 with torch.cuda.graph(graph,stream=stream):out=transport.reduce(x)
                 graph.instantiate();roots.append((graph,x,out,stream))
                 signature=peer.graph_signature((graph,))
+                wire_dtype=torch.float32 if transport.payload_dtype=='fp32' and dtype in (torch.bfloat16,torch.float16) else dtype
+                wire_bytes=x.numel()*torch.empty((),dtype=wire_dtype).element_size()
+                if not any(k[0]=='p2p4' and k[3]==wire_bytes and k[4]==str(wire_dtype) for k in signature):
+                    raise RuntimeError('Captured payload representation does not match policy')
                 if not any(k[0]=='p2p4' and k[1]==x.numel()*x.element_size() for k in signature):
                     raise RuntimeError('Actual graph lacks recorded device-memory all-reduce')
                 for change in range(3):

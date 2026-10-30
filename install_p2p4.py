@@ -5,8 +5,7 @@ from image_identity import verify_base
 
 BASE='dsv41-optimized:20261029-p2p'
 BASE_ID='sha256:e3bc13c775dee4013f5cfe28688482e0ec8ccb9b045ccb012c9f6e53b56c2726'
-TAG='dsv41-optimized:20261030-epyc-p2p4'
-MANIFEST='5ec7f72cea90478976c9ff96c066ee9d6e07994bbb4c3192c737bb4fd8c9c706'
+MANIFESTS={'hostpair':'70f183aaed841b1f6d1aebb671c141f2298c42192c5145fc75419e3978504c9f','p2p4':'b0b29cff24261569dea8123fca62fdd51a5b85856b4c0094329590f7bebfd0fc'}
 
 def inspect(image,format):
     p=subprocess.run(['docker','image','inspect',image,'--format',format],text=True,capture_output=True)
@@ -15,22 +14,26 @@ def inspect(image,format):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--directory',default='dsv41-download',help='Base image download/cache directory')
+    p.add_argument('--transport',choices=('both','hostpair','p2p4'),default='both')
     a=p.parse_args();here=pathlib.Path(__file__).resolve().parent
     actual=inspect(BASE,'{{.Id}}')
     if actual is None:
         subprocess.run([sys.executable,str(here/'install_image.py'),'--directory',a.directory],check=True)
         actual=inspect(BASE,'{{.Id}}')
     print('Verified base identity: '+verify_base(BASE,BASE_ID))
-    subprocess.run(['docker','build','--network','none','-t',TAG,str(here/'p2p4')],check=True)
-    if inspect(TAG,'{{index .Config.Labels "io.dsv41.transport"}}')!='nccl-p2p4':
-        raise RuntimeError('Four-way image transport label missing')
-    raw=subprocess.check_output(['docker','run','--rm','--network','none','--entrypoint','cat',TAG,
-                                 '/opt/dsv41/manifest.json'])
-    if hashlib.sha256(raw).hexdigest()!=MANIFEST:raise RuntimeError('Installed source manifest differs')
-    subprocess.run(['docker','run','--rm','--network','none',TAG,'check'],check=True)
-    subprocess.run(['docker','run','--rm','--network','none','--entrypoint','python3',TAG,
-        '/opt/dsv41/p2p4-source/check_startup.py'],check=True)
-    print('Complete EPYC P2P4 serving image installed: '+TAG)
+    for mode in ('hostpair','p2p4') if a.transport=='both' else (a.transport,):
+        tag='dsv41-optimized:20261030-transport-v3-'+mode
+        subprocess.run(['docker','build','--network','none','--target',mode,'-t',tag,str(here/'p2p4')],check=True)
+        label='hostpair' if mode=='hostpair' else 'nccl-p2p4'
+        if inspect(tag,'{{index .Config.Labels "io.dsv41.transport"}}')!=label:
+            raise RuntimeError('Image transport label differs')
+        raw=subprocess.check_output(['docker','run','--rm','--network','none','--entrypoint','cat',tag,
+                                     '/opt/dsv41/manifest.json'])
+        if hashlib.sha256(raw).hexdigest()!=MANIFESTS[mode]:raise RuntimeError('Installed source manifest differs')
+        subprocess.run(['docker','run','--rm','--network','none',tag,'check'],check=True)
+        subprocess.run(['docker','run','--rm','--network','none','--entrypoint','python3',tag,
+            '/opt/dsv41/p2p4-source/check_startup.py'],check=True)
+        print('Complete serving image installed: '+tag)
     print('Next run the four-GPU qualification in p2p4/README.md, then bash p2p4/run.sh.')
 
 if __name__=='__main__':main()

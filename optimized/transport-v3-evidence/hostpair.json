@@ -1,0 +1,810 @@
+{
+  "passed": true,
+  "world_size": 4,
+  "peer_matrix": [
+    [
+      true,
+      true,
+      false,
+      false
+    ],
+    [
+      true,
+      true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      true
+    ],
+    [
+      false,
+      false,
+      true,
+      true
+    ]
+  ],
+  "independent_cpu_fp64_reference": true,
+  "ranks": [
+    {
+      "passed": true,
+      "rank": 0,
+      "world_size": 4,
+      "checks": [
+        {
+          "profile": "stock",
+          "rows": 1,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 12,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 18,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 24,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 30,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 36,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "six",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "pair_write_bf16"
+          ]
+        }
+      ],
+      "cubin_sha256": "04ddd502f8cd651eb16d336804f0b1a2fc2a93061683f6dccb2ff009b63d1d65",
+      "completed_generations": [
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "host_error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "large_prefill_declined": true,
+      "pair_scope": "48x5120 BF16 only",
+      "scope": "Four-rank operator/graph qualification; full-model and fully-connected EPYC qualification remain separate"
+    },
+    {
+      "passed": true,
+      "rank": 1,
+      "world_size": 4,
+      "checks": [
+        {
+          "profile": "stock",
+          "rows": 1,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 12,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 18,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 24,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 30,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 36,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "six",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "pair_write_bf16"
+          ]
+        }
+      ],
+      "cubin_sha256": "04ddd502f8cd651eb16d336804f0b1a2fc2a93061683f6dccb2ff009b63d1d65",
+      "completed_generations": [
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "host_error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "large_prefill_declined": true,
+      "pair_scope": "48x5120 BF16 only",
+      "scope": "Four-rank operator/graph qualification; full-model and fully-connected EPYC qualification remain separate"
+    },
+    {
+      "passed": true,
+      "rank": 2,
+      "world_size": 4,
+      "checks": [
+        {
+          "profile": "stock",
+          "rows": 1,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 12,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 18,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 24,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 30,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 36,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "six",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "pair_write_bf16"
+          ]
+        }
+      ],
+      "cubin_sha256": "04ddd502f8cd651eb16d336804f0b1a2fc2a93061683f6dccb2ff009b63d1d65",
+      "completed_generations": [
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "host_error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "large_prefill_declined": true,
+      "pair_scope": "48x5120 BF16 only",
+      "scope": "Four-rank operator/graph qualification; full-model and fully-connected EPYC qualification remain separate"
+    },
+    {
+      "passed": true,
+      "rank": 3,
+      "world_size": 4,
+      "checks": [
+        {
+          "profile": "stock",
+          "rows": 1,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7oneshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 12,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 18,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 24,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 30,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 36,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "stock",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm11twoshot_dmaI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "six",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 6,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "_ZN7hostshm7twoshotI13__nv_bfloat16Li8ELi4EEEvPKNS_3VecIT_XT0_EEEPS4_PhPjilly"
+          ]
+        },
+        {
+          "profile": "pair_hybrid",
+          "rows": 48,
+          "eager": true,
+          "graph_replays": 3,
+          "changed_input": true,
+          "poisoned_output": true,
+          "kernel_names": [
+            "pair_write_bf16"
+          ]
+        }
+      ],
+      "cubin_sha256": "04ddd502f8cd651eb16d336804f0b1a2fc2a93061683f6dccb2ff009b63d1d65",
+      "completed_generations": [
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "host_error_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "large_prefill_declined": true,
+      "pair_scope": "48x5120 BF16 only",
+      "scope": "Four-rank operator/graph qualification; full-model and fully-connected EPYC qualification remain separate"
+    }
+  ],
+  "full_model_qualified": false
+}

@@ -17,7 +17,7 @@ def main():
     from vllm.platforms import current_platform
     if current_platform.is_cuda():
         from vllm.sm80.distributed.communicator import needs_fork_communicator
-        assert os.environ['VLLM_HOST_ALLREDUCE']=='0'
+        assert os.environ['VLLM_HOST_ALLREDUCE']==('1' if os.environ['DSV41_TRANSPORT']=='hostpair' else '0')
         assert needs_fork_communicator()
         assert current_platform.get_device_communicator_cls()=='vllm.sm80.distributed.communicator.Sm80CudaCommunicator'
     print('P2P4_CONTRACT_CHECK_PASSED')
